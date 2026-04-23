@@ -1,3 +1,23 @@
+import { Header } from "@/components/landing/header";
+import { HeroSection } from "@/components/landing/hero";
+import { ProblemSolutionSection } from "@/components/landing/problem-solution";
+import { FeaturesSection } from "@/components/landing/features";
+import { HowItWorksSection } from "@/components/landing/how-it-works";
+import { CtaSection } from "@/components/landing/cta";
+import { Footer } from "@/components/landing/footer";
+
 export default function Home() {
-  return <></>;
+  return (
+    <div className="bg-background text-foreground">
+      <Header />
+      <main className="pt-20">
+        <HeroSection />
+        <ProblemSolutionSection />
+        <FeaturesSection />
+        <HowItWorksSection />
+        <CtaSection />
+      </main>
+      <Footer />
+    </div>
+  );
 }
