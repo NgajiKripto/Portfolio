@@ -1,8 +1,8 @@
 'use server';
 /**
- * @fileOverview A Genkit flow to automatically filter candidate resumes based on specified keywords and phrases.
+ * @fileOverview A Genkit flow to automatically score candidate resumes based on specified keywords and phrases.
  *
- * - aiResumeKeywordFiltering - A function that handles the AI-powered resume keyword filtering process.
+ * - aiResumeKeywordFiltering - A function that handles the AI-powered resume scoring process.
  * - AiResumeKeywordFilteringInput - The input type for the aiResumeKeywordFiltering function.
  * - AiResumeKeywordFilteringOutput - The return type for the aiResumeKeywordFiltering function.
  */
@@ -25,12 +25,12 @@ export type AiResumeKeywordFilteringInput = z.infer<
 >;
 
 const AiResumeKeywordFilteringOutputSchema = z.object({
-  isQualified: z
-    .boolean()
-    .describe('True if the candidate\'s resume meets the specified criteria and keywords, false otherwise.'),
+  score: z
+    .number().min(0).max(100)
+    .describe('A match score between 0 and 100 indicating how well the resume matches the job description.'),
   reason: z
     .string()
-    .describe('A brief explanation of why the candidate is qualified or unqualified, referencing the missing or present keywords/skills.'),
+    .describe('A brief explanation for the given match score, highlighting key strengths or weaknesses.'),
 });
 export type AiResumeKeywordFilteringOutput = z.infer<
   typeof AiResumeKeywordFilteringOutputSchema
@@ -46,9 +46,13 @@ const aiResumeKeywordFilteringPrompt = ai.definePrompt({
   name: 'aiResumeKeywordFilteringPrompt',
   input: {schema: AiResumeKeywordFilteringInputSchema},
   output: {schema: AiResumeKeywordFilteringOutputSchema},
-  prompt: `You are an expert HR recruiter assistant whose sole purpose is to evaluate candidate resumes against a job description.
+  prompt: `You are an expert HR recruiter assistant. Your task is to evaluate a candidate's resume against a given job description and provide a match score from 0 to 100, along with a brief explanation.
 
-Your task is to determine if a candidate is qualified for a job based on the critical keywords and phrases mentioned in the job description. Pay close attention to explicit requirements and essential skills.
+- A score of 0-69 means the candidate is not a good fit.
+- A score of 70-84 means the candidate is a potential fit.
+- A score of 85-100 means the candidate is a strong fit.
+
+Base your score on the presence of required skills, years of experience, and overall relevance to the job description.
 
 Job Description:
 {{{jobDescription}}}
@@ -56,7 +60,7 @@ Job Description:
 Candidate Resume:
 {{{candidateResume}}}
 
-Based on the job description, does the candidate\'s resume meet the critical criteria and keywords to be considered qualified? Provide a boolean result for 'isQualified' and a 'reason' explaining your decision, highlighting specific keywords or phrases found or missing.`,
+Provide a 'score' and a 'reason' for your evaluation in a strict JSON format. Example: { "score": 85, "reason": "Sangat cocok dengan pengalaman React" }.`,
 });
 
 const aiResumeKeywordFilteringFlow = ai.defineFlow(

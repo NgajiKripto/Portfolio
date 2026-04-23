@@ -186,7 +186,7 @@ export function JobMatchModal({ children }: { children: React.ReactNode }) {
           );
         }
         if (analysisResult) {
-            const isQualified = analysisResult.isQualified;
+            const isQualified = analysisResult.score >= 70;
             return (
                 <div className="flex flex-col items-center justify-center h-auto gap-4 text-center p-6">
                     {isQualified ? (
@@ -200,9 +200,15 @@ export function JobMatchModal({ children }: { children: React.ReactNode }) {
                     )}>
                         {isQualified ? "Anda Kandidat yang Cocok!" : "Belum Cukup Sesuai"}
                     </h3>
+                     <div className="bg-muted text-muted-foreground p-2 px-4 rounded-full text-sm font-semibold">
+                      Skor Kecocokan: <span className={cn("font-bold", isQualified ? "text-green-600" : "text-destructive")}>{analysisResult.score}</span> / 100
+                    </div>
                     <p className="text-muted-foreground max-w-md">{analysisResult.reason}</p>
-                    <DialogFooter className="mt-6 w-full">
-                       <Button size="lg" className="w-full" onClick={resetState}>Analisis CV Lain</Button>
+                    <DialogFooter className="mt-6 w-full flex-col gap-2">
+                       {isQualified && (
+                         <Button size="lg" className="w-full">Lanjutkan Kirim CV ke HRD</Button>
+                       )}
+                       <Button size="lg" variant={isQualified ? "outline" : "default"} className="w-full" onClick={resetState}>Analisis CV Lain</Button>
                     </DialogFooter>
                 </div>
             )
