@@ -1,25 +1,40 @@
-import { Header } from "@/components/landing/header";
-import { HeroSection } from "@/components/landing/hero";
-import { ProblemSolutionSection } from "@/components/landing/problem-solution";
-import { FeaturesSection } from "@/components/landing/features";
-import { HowItWorksSection } from "@/components/landing/how-it-works";
-import { JobListingSection } from "@/components/landing/job-listing";
-import { CtaSection } from "@/components/landing/cta";
-import { Footer } from "@/components/landing/footer";
+'use client';
 
-export default function Home() {
+import React from 'react';
+import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import { MinimalistHero } from '@/components/ui/minimalist-hero';
+
+const Home = () => {
+  const navLinks = [
+    { label: 'HOME', href: '#' },
+    { label: 'PRODUCT', href: '#' },
+    { label: 'STORE', href: '#' },
+    { label: 'ABOUT US', href: '#' },
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, href: '#' },
+    { icon: Instagram, href: '#' },
+    { icon: Twitter, href: '#' },
+    { icon: Linkedin, href: '#' },
+  ];
+
   return (
-    <div className="bg-background text-foreground">
-      <Header />
-      <main className="pt-20">
-        <HeroSection />
-        <ProblemSolutionSection />
-        <FeaturesSection />
-        <HowItWorksSection />
-        <JobListingSection />
-        <CtaSection />
-      </main>
-      <Footer />
-    </div>
+    <MinimalistHero
+      logoText="mnmlst."
+      navLinks={navLinks}
+      mainText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultrices, justo vel tempus."
+      readMoreLink="#"
+      imageSrc="https://picsum.photos/seed/hero-portrait/400/600"
+      imageAlt="A portrait of a person in a black turtleneck, in profile."
+      overlayText={{
+        part1: 'less is',
+        part2: 'more.',
+      }}
+      socialLinks={socialLinks}
+      locationText="Arlington Heights, IL"
+    />
   );
-}
+};
+
+export default Home;
