@@ -37,10 +37,10 @@ const Testimonials = () => {
             transition={{ delay: index * 0.15 }}
             variants={FADE_UP_ANIMATION_VARIANTS}
           >
-            <Card className="bg-primary/30 p-8 rounded-lg border-transparent h-full">
+            <Card className="bg-primary/10 p-8 rounded-lg border-transparent h-full">
                 <CardContent className="p-0">
-                <Quote className="w-8 h-8 text-white/50 mb-6" />
-                <p className="font-body text-lg text-white italic mb-8">"{testimonial.quote}"</p>
+                <Quote className="w-8 h-8 text-primary/50 mb-6" />
+                <p className="font-body text-lg text-primary italic mb-8">"{testimonial.quote}"</p>
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-white/20">
                     <Image
@@ -52,8 +52,8 @@ const Testimonials = () => {
                     />
                     </div>
                     <div>
-                    <h4 className="font-display text-sm font-semibold text-white">{testimonial.name}</h4>
-                    <p className="font-body text-sm text-white">{testimonial.role}</p>
+                    <h4 className="font-display text-sm font-semibold text-primary">{testimonial.name}</h4>
+                    <p className="font-body text-sm text-primary">{testimonial.role}</p>
                     </div>
                 </div>
                 </CardContent>
