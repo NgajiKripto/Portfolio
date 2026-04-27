@@ -16,15 +16,16 @@ const Hero = () => {
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-20 text-center"
     >
       <GridScan
+        sensitivity={0.55}
+        lineThickness={1}
         linesColor="#170C79"
-        scanColor="#FF4081"
-        lineThickness={1.5}
-        gridScale={0.15}
-        scanOpacity={0.2}
-        bloomIntensity={0.5}
-        chromaticAberration={0.01}
-        scanGlow={0.7}
-        lineJitter={0.05}
+        gridScale={0.1}
+        scanColor="#8276ee"
+        scanOpacity={0.4}
+        enablePost
+        bloomIntensity={0.6}
+        chromaticAberration={0.002}
+        noiseIntensity={0.01}
       />
       <div className="relative z-10">
         <div>
