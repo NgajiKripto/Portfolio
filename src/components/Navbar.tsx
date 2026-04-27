@@ -1,41 +1,87 @@
 'use client';
 
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
+  { label: 'Beranda', href: '#home' },
   { label: 'Layanan', href: '#services' },
   { label: 'Testimoni', href: '#testimonials' },
   { label: 'Kontak', href: '#contact' },
 ];
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
+  };
+
+
   return (
-    <header className="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md text-slate-700 dark:text-slate-300 font-manrope text-sm font-medium tracking-tight fixed top-0 w-full z-50 border-b border-slate-100 dark:border-slate-800/50 shadow-[0_4px_20px_-4px_rgba(42,78,110,0.08)]">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
-        <div className="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">
-          Bichar Freelancer
-        </div>
-        <nav className="hidden md:flex space-x-lg">
+    <header className={cn(
+      "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+      isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : "bg-transparent"
+    )}>
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
+        <a href="#home" onClick={(e) => scrollToSection(e, '#home')} className="font-heading font-bold text-xl tracking-tight">
+          Raka<span className="text-primary">.</span>
+        </a>
+        
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-300"
-            >
+            <a key={link.label} href={link.href} onClick={(e) => scrollToSection(e, link.href)} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               {link.label}
             </a>
           ))}
         </nav>
-        <div className='flex items-center gap-4'>
-            <Button className="hidden md:inline-flex bg-primary text-on-primary px-xl py-sm rounded-full font-label-sm text-label-sm hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 active:scale-95">
-                Mulai
-            </Button>
-            <button className="md:hidden text-slate-900 dark:text-white">
-                <span className="material-symbols-outlined">menu</span>
-            </button>
+
+        <div className="flex items-center gap-4">
+          <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')} className="hidden md:inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-full hover:bg-accent transition-colors">
+            Mulai Proyek
+          </a>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-muted-foreground hover:text-foreground">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
+      
+      {/* Mobile Menu */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={isMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.2 }}
+        className={cn("md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-lg border-b border-border shadow-lg", {
+          'block': isMenuOpen,
+          'hidden': !isMenuOpen
+        })}
+      >
+        <nav className="flex flex-col items-center gap-4 p-8">
+            {navLinks.map((link) => (
+                <a key={link.label} href={link.href} onClick={(e) => scrollToSection(e, link.href)} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                    {link.label}
+                </a>
+            ))}
+            <a href="#contact" onClick={(e) => scrollToSection(e, '#contact')} className="mt-4 inline-flex items-center justify-center px-8 py-3 text-base font-medium text-primary-foreground bg-primary rounded-full hover:bg-accent transition-colors">
+              Mulai Proyek
+            </a>
+        </nav>
+      </motion.div>
     </header>
   );
 };

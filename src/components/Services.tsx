@@ -1,56 +1,61 @@
 'use client';
-import React from 'react';
-const services = [
-  {
-    title: 'Pembuatan Landing Page',
-    description: 'Halaman arahan berkonversi tinggi dan secepat kilat yang disesuaikan dengan tujuan kampanye Anda.',
-    icon: 'web',
-  },
-  {
-    title: 'Ulasan Google Maps',
-    description: 'Manajemen reputasi strategis untuk membangun kepercayaan dan otoritas lokal.',
-    icon: 'rate_review',
-  },
-  {
-    title: 'Optimasi Google Maps',
-    description: 'SEO lokal berbasis data untuk memastikan bisnis Anda mendominasi hasil pencarian lokal.',
-    icon: 'location_on',
-  },
-  {
-    title: 'Pengelolaan E-commerce',
-    description: 'Manajemen e-commerce dari awal hingga akhir yang berfokus pada UX dan optimalisasi tingkat konversi.',
-    icon: 'storefront',
-  },
-];
 
+import React from 'react';
+import { motion } from 'framer-motion';
+import { services } from '@/data/services';
+import { cn } from '@/lib/utils';
 
 const Services = () => {
+  const FADE_UP_ANIMATION_VARIANTS = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } },
+  };
+
   return (
-    <section id="services" className="max-w-container-max mx-auto px-gutter py-xxl bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_-4px_rgba(14,55,86,0.04)] mb-xxl">
-      <div className="text-center space-y-sm mb-xl">
-        <span className="inline-block px-md py-xs rounded-full bg-primary/5 text-primary font-label-sm text-label-sm">
-          Keahlian Kami
-        </span>
-        <h2 className="font-headline-lg text-headline-lg text-on-surface">
-          Layanan yang Dirancang dengan Presisi
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
-        {services.map((service, index) => {
-          return (
-            <div key={index} className="bg-surface p-xl rounded-xl border border-outline-variant/30 shadow-[0_2px_8px_-2px_rgba(14,55,86,0.05)] hover:shadow-[0_8px_24px_-4px_rgba(14,55,86,0.08)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer">
-              <div className="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-lg group-hover:bg-primary group-hover:text-on-primary transition-colors">
-                <span className="material-symbols-outlined">{service.icon}</span>
+    <section id="services" className="container mx-auto py-24 px-4 md:px-6">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          show: {
+            transition: {
+              staggerChildren: 0.15,
+            },
+          },
+        }}
+        className="text-center"
+      >
+        <motion.h2 variants={FADE_UP_ANIMATION_VARIANTS} className="font-heading text-3xl md:text-4xl font-bold tracking-tight">
+          Layanan yang Saya Tawarkan
+        </motion.h2>
+        <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+          Solusi komprehensif untuk membawa ide Anda dari konsep menjadi kenyataan digital.
+        </motion.p>
+      </motion.div>
+
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {services.map((service, index) => (
+          <motion.div
+            key={service.title}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ delay: index * 0.1 }}
+            variants={FADE_UP_ANIMATION_VARIANTS}
+            className="group relative p-8 rounded-lg bg-card border border-border/50 hover:border-primary/50 transition-colors duration-300"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative">
+              <div className="mb-6 w-12 h-12 flex items-center justify-center rounded-lg bg-secondary text-primary">
+                <service.icon className="w-6 h-6" />
               </div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-sm">
-                {service.title}
-              </h3>
-              <p className="font-body-md text-body-md text-on-surface-variant">
-                {service.description}
-              </p>
+              <h3 className="font-heading text-xl font-bold mb-2">{service.title}</h3>
+              <p className="text-muted-foreground text-sm">{service.description}</p>
             </div>
-          );
-        })}
+          </motion.div>
+        ))}
       </div>
     </section>
   );

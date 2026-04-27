@@ -1,26 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import { ThemeProvider } from '@/components/theme-provider';
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
-const manrope = Manrope({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-manrope',
-});
 
 export const metadata: Metadata = {
-  title: 'Bichar Freelancer - Solusi Digital untuk Kebutuhan Anda',
-  description:
-    'Saya merancang pengalaman digital yang mendorong pertumbuhan dan memberikan hasil.',
+  title: 'Raka Pratama - Full-Stack Developer & Digital Consultant',
+  description: 'Meningkatkan bisnis Anda dengan solusi digital terpadu. Dari pengembangan web kustom hingga optimasi SEO, saya memberikan hasil yang terukur.',
 };
 
 export default function RootLayout({
@@ -29,26 +14,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning>
-       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <html lang="id" className="dark" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&f[]=general-sans@400,500&display=swap" rel="stylesheet" />
+        <style>{`
+          :root {
+            --font-satoshi: 'Satoshi', sans-serif;
+            --font-general-sans: 'General Sans', sans-serif;
+          }
+        `}</style>
       </head>
       <body
-        className={cn(
-          'font-sans',
-          inter.variable,
-          manrope.variable
-        )}
+        className={cn('font-body bg-background text-foreground antialiased')}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        {children}
+        <Toaster />
       </body>
     </html>
   );

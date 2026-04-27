@@ -3,21 +3,59 @@
 @tailwind utilities;
 
 @layer base {
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-  .material-symbols-outlined.filled {
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  :root {
+    --background: 224 71.4% 4.1%; /* #08090a */
+    --foreground: 210 20% 98%; /* #fafafa */
+    
+    --card: 224 71.4% 6.1%; /* #0c0e10 */
+    --card-foreground: 210 20% 98%; /* #fafafa */
+    
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    
+    --primary: 158 29% 51%; /* #6aa383 sage green */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 215 27.9% 16.9%; /* #1e293b */
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 215 20.2% 65.1%; /* #94a3b8 */
+    
+    --accent: 158 29% 41%; /* darker sage */
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 158 29% 51%;
+    
+    --radius: 0.5rem;
   }
 }
- 
+
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  * {
+    @apply border-border;
   }
   body {
-    @apply bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+}
+
+/* Adding a subtle grain texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+  opacity: 0.03;
+  z-index: -1;
+  pointer-events: none;
 }
