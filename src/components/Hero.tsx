@@ -2,7 +2,6 @@
 
 import { Button } from './ui/button';
 import { BlurText } from '@/components/ui/blur-text';
-import LineWaves from './LineWaves';
 
 const Hero = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -13,18 +12,9 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 py-20 text-center"
+      className="flex min-h-screen flex-col items-center justify-center bg-white px-6 py-20 text-center"
     >
-      <LineWaves
-        color1="#ff7a5a"
-        color2="#4ac7f0"
-        color3="#ffffff"
-        brightness={0.4}
-        speed={0.2}
-        warpIntensity={0.8}
-        rotation={-25}
-      />
-      <div className="relative z-10">
+      <div>
         <div>
           <BlurText
             text="Solusi Digital Inovatif untuk Bisnis Anda"
