@@ -58,19 +58,16 @@ const BlurText: React.FC<BlurTextProps> = ({
       animate="visible"
       transition={{ staggerChildren: 0.05, delayChildren: delay / 1000 }}
       onAnimationComplete={onAnimationComplete}
-      className={cn(
-        'flex flex-wrap justify-center',
-        className,
-        animateBy === 'letters' ? 'gap-x-1' : 'gap-x-2'
-      )}
+      className={cn(className)}
     >
       {items.map((item, i) => (
         <motion.span
           key={i}
           variants={variants}
           transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="inline-block"
         >
-          {item}
+          {item}{animateBy === 'words' && i < items.length - 1 ? '\u00A0' : ''}
         </motion.span>
       ))}
     </motion.div>
