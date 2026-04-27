@@ -15,7 +15,7 @@ const Testimonials = () => {
     };
 
   return (
-    <section id="testimonials" className="py-28 px-6 max-w-6xl mx-auto">
+    <section id="testimonials" className="py-28 px-6 max-w-6xl mx-auto bg-white">
         <motion.div 
             initial="hidden"
             whileInView="show"
@@ -23,8 +23,8 @@ const Testimonials = () => {
             variants={FADE_UP_ANIMATION_VARIANTS}
             className="mb-16 text-center md:text-left"
         >
-            <h2 className="font-heading text-4xl text-primary mb-4">Apa Kata Klien</h2>
-            <p className="font-body text-lg text-muted-foreground max-w-2xl">Pengalaman mereka yang telah bekerja sama dalam mentransformasi bisnis digital.</p>
+            <h2 className="font-heading text-4xl text-foreground mb-4">Apa Kata Klien</h2>
+            <p className="font-body text-lg text-foreground max-w-2xl">Pengalaman mereka yang telah bekerja sama dalam mentransformasi bisnis digital.</p>
         </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -39,8 +39,8 @@ const Testimonials = () => {
           >
             <Card className="bg-card p-8 rounded-lg border border-border/20 h-full">
                 <CardContent className="p-0">
-                <Quote className="w-8 h-8 text-primary/50 mb-6" />
-                <p className="font-body text-lg text-muted-foreground italic mb-8">"{testimonial.quote}"</p>
+                <Quote className="w-8 h-8 text-foreground/50 mb-6" />
+                <p className="font-body text-lg text-foreground italic mb-8">"{testimonial.quote}"</p>
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-muted">
                     <Image
@@ -52,8 +52,8 @@ const Testimonials = () => {
                     />
                     </div>
                     <div>
-                    <h4 className="font-display text-sm font-semibold text-primary">{testimonial.name}</h4>
-                    <p className="font-body text-sm text-muted-foreground">{testimonial.role}</p>
+                    <h4 className="font-display text-sm font-semibold text-foreground">{testimonial.name}</h4>
+                    <p className="font-body text-sm text-foreground">{testimonial.role}</p>
                     </div>
                 </div>
                 </CardContent>
