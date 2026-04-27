@@ -11,16 +11,16 @@ const Hero = () => {
   return (
     <section id="home" className="max-w-container-max mx-auto px-gutter py-xxl md:py-[120px] flex flex-col md:flex-row items-center gap-xxl">
       <div className="flex-1 space-y-lg">
-        <h1 className="font-headline-xl text-headline-xl text-on-surface">Elevate Your Business with Precision Digital Solutions.</h1>
+        <h1 className="font-headline-xl text-headline-xl text-on-surface">Tingkatkan Bisnis Anda dengan Solusi Digital Presisi.</h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-          We engineer uncompromising digital experiences that drive growth and deliver results.
+          Kami merancang pengalaman digital tanpa kompromi yang mendorong pertumbuhan dan memberikan hasil.
         </p>
         <div className="flex flex-wrap gap-md pt-md">
           <Button className="bg-primary text-on-primary px-xl py-md rounded-full font-label-sm text-label-sm hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 shadow-[0_2px_10px_-2px_rgba(14,55,86,0.2)]">
-            Get Started
+            Mulai
           </Button>
           <Button variant="outline" className="bg-transparent text-primary border border-primary px-xl py-md rounded-full font-label-sm text-label-sm hover:bg-surface-container transition-colors duration-300">
-            Our Services
+            Layanan Kami
           </Button>
         </div>
       </div>

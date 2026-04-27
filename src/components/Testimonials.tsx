@@ -7,17 +7,17 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 const testimonials = [
   {
     id: 'testimonial-1',
-    name: 'Marcus Thorne',
-    role: 'Director of Digital, Nexus Retail',
+    name: 'Budi Santoso',
+    role: 'Direktur Digital, Ritel Nexus',
     quote:
-      "ElevateDigital transformed our online presence. Their structured approach to our e-commerce platform resulted in a 40% increase in conversion within the first quarter. Pure professionals.",
+      "Bichar Freelancer mengubah kehadiran online kami. Pendekatan terstruktur mereka pada platform e-commerce kami menghasilkan peningkatan konversi 40% pada kuartal pertama. Benar-benar profesional.",
   },
   {
     id: 'testimonial-2',
-    name: 'Sarah Jenkins',
-    role: 'CEO, Apex Innovations',
+    name: 'Siti Aminah',
+    role: 'CEO, Inovasi Apex',
     quote:
-      'The clarity and precision of their work is unmatched. Their landing page optimization campaign gave us an ROI that exceeded our most optimistic projections.',
+      'Kejelasan dan ketepatan kerja mereka tidak ada tandingannya. Kampanye optimalisasi halaman arahan mereka memberi kami ROI yang melebihi proyeksi paling optimis kami.',
   },
 ];
 
@@ -31,9 +31,9 @@ const Testimonials = () => {
     <section id="testimonials" className="max-w-container-max mx-auto px-gutter py-xxl mb-xxl">
       <div className="text-center space-y-sm mb-xl">
         <span className="inline-block px-md py-xs rounded-full bg-primary/5 text-primary font-label-sm text-label-sm">
-          Client Success Stories
+          Kisah Sukses Klien
         </span>
-        <h2 className="font-headline-lg text-headline-lg text-on-surface">Proven Outcomes</h2>
+        <h2 className="font-headline-lg text-headline-lg text-on-surface">Hasil yang Terbukti</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
         {testimonials.map((testimonial) => {
