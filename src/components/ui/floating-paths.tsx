@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Using a fixed seed for the random number generator to ensure consistent "random" paths
 let seed = 1;
@@ -40,6 +40,12 @@ function generatePath(
   return path;
 }
 
+interface PathData {
+  d: string;
+  duration: number;
+  opacity: number;
+}
+
 interface FloatingPathsProps {
   position: number;
   color?: string;
@@ -53,32 +59,42 @@ export function FloatingPaths({
   opacityStart = 0.6,
   opacityStep = 0.02,
 }: FloatingPathsProps) {
+  const [paths, setPaths] = useState<PathData[]>([]);
+
+  useEffect(() => {
+    // This code now runs only on the client, after hydration
+    
+    // Different seed for each instance to get different paths
+    seed = position === 1 ? 1 : 100; 
+
+    const generatedPaths = Array.from({ length: 36 }).map((_, i) => {
+      const startPoint = {
+        x: randomBetween(-100, 100),
+        y: randomBetween(-100, 100),
+      };
+      const pathData = generatePath(
+        i,
+        startPoint,
+        randomBetween(3, 6),
+        0.5,
+        randomBetween(200, 400)
+      );
+      const duration = randomBetween(20, 30);
+      const opacity = Math.max(0.1, opacityStart - i * opacityStep);
+
+      return {
+        d: pathData,
+        duration,
+        opacity,
+      };
+    });
+    setPaths(generatedPaths);
+  }, [position, opacityStart, opacityStep]);
+
+  if (paths.length === 0) {
+    return null;
+  }
   
-  // Different seed for each instance to get different paths
-  seed = position === 1 ? 1 : 100; 
-
-  const paths = Array.from({ length: 36 }).map((_, i) => {
-    const startPoint = {
-      x: randomBetween(-100, 100),
-      y: randomBetween(-100, 100),
-    };
-    const pathData = generatePath(
-      i,
-      startPoint,
-      randomBetween(3, 6),
-      0.5,
-      randomBetween(200, 400)
-    );
-    const duration = randomBetween(20, 30);
-    const opacity = Math.max(0.1, opacityStart - i * opacityStep);
-
-    return {
-      d: pathData,
-      duration,
-      opacity,
-    };
-  });
-
   return (
     <div className="absolute inset-0 z-0 h-full w-full">
       <motion.svg
