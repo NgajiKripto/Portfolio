@@ -12,7 +12,6 @@ interface PillNavItem {
 }
 
 interface PillNavProps {
-  logoText?: string;
   items: PillNavItem[];
   activeHref?: string;
   className?: string;
@@ -26,7 +25,6 @@ interface PillNavProps {
 }
 
 const PillNav = ({
-  logoText = 'Raka.',
   items,
   activeHref,
   className = '',
@@ -43,12 +41,9 @@ const PillNav = ({
   const circleRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const tlRefs = useRef<(gsap.core.Timeline | null)[]>([]);
   const activeTweenRefs = useRef<(gsap.core.Tween | null)[]>([]);
-  const logoElRef = useRef<HTMLDivElement>(null);
-  const logoTweenRef = useRef<gsap.core.Tween | null>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const navItemsRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     circleRefs.current = circleRefs.current.slice(0, items.length);
@@ -119,18 +114,7 @@ const PillNav = ({
     }
     
     if (initialLoadAnimation) {
-      const logo = logoRef.current;
       const navItems = navItemsRef.current;
-
-      if (logo) {
-        gsap.fromTo(logo, { opacity: 0, scale: 0.8 }, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          delay: 0.2,
-          ease
-        });
-      }
 
       if (navItems) {
         gsap.fromTo(navItems.querySelectorAll('li'), { opacity: 0, y: 10 }, {
@@ -165,19 +149,6 @@ const PillNav = ({
     activeTweenRefs.current[i]?.kill();
     activeTweenRefs.current[i] = tl.tweenTo(0, {
       duration: 0.2,
-      ease,
-      overwrite: 'auto'
-    });
-  };
-
-  const handleLogoEnter = () => {
-    const el = logoElRef.current;
-    if (!el) return;
-    logoTweenRef.current?.kill();
-    gsap.set(el, { rotate: 0 });
-    logoTweenRef.current = gsap.to(el, {
-      rotate: 360,
-      duration: 0.4,
       ease,
       overwrite: 'auto'
     });
@@ -263,19 +234,6 @@ const PillNav = ({
   return (
     <div className="pill-nav-container">
       <nav className={cn('pill-nav', className)} aria-label="Primary" style={cssVars}>
-        <a
-            className="pill-logo"
-            href={'#home'}
-            aria-label="Home"
-            onMouseEnter={handleLogoEnter}
-            ref={logoRef}
-            onClick={(e) => scrollToSection(e, '#home')}
-        >
-            <div ref={logoElRef} className='font-heading font-bold text-lg text-primary-foreground'>
-                {logoText.charAt(0)}
-            </div>
-        </a>
-
         <div className="pill-nav-items desktop-only" ref={navItemsRef}>
           <ul className="pill-list" role="menubar">
             {items.map((item, i) => (
