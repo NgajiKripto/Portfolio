@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-20 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 py-20 text-center"
     >
       <GridScan
         sensitivity={0.55}
