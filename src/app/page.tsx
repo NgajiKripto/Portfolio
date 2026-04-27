@@ -43,10 +43,10 @@ export default function Home() {
       <PillNav
         items={navLinks}
         activeHref={`#${activeSection}`}
-        baseColor="hsl(var(--muted-foreground))"
+        baseColor="hsl(var(--foreground))"
         pillColor="hsl(var(--card))"
-        hoveredPillTextColor="hsl(var(--card-foreground))"
-        pillTextColor="hsl(var(--primary))"
+        hoveredPillTextColor="hsl(var(--primary-foreground))"
+        pillTextColor="hsl(var(--foreground))"
       />
       <main>
         <Hero />

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
-import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface PillNavItem {
@@ -33,7 +32,7 @@ const PillNav = ({
   className = '',
   ease = 'power3.easeOut',
   baseColor = '#1b1b1d', // foreground
-  pillColor = '#e4e2e4', // card
+  pillColor = '#ffffff', // card
   hoveredPillTextColor = '#1b1b1d', // foreground
   pillTextColor,
   onMobileMenuClick,
@@ -118,7 +117,7 @@ const PillNav = ({
     if (menu) {
       gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1 });
     }
-
+    
     if (initialLoadAnimation) {
       const logo = logoRef.current;
       const navItems = navItemsRef.current;
@@ -134,8 +133,7 @@ const PillNav = ({
       }
 
       if (navItems) {
-        const items = navItems.querySelectorAll('li');
-        gsap.fromTo(items, { opacity: 0, y: 10 }, {
+        gsap.fromTo(navItems.querySelectorAll('li'), { opacity: 0, y: 10 }, {
             opacity: 1,
             y: 0,
             duration: 0.5,
@@ -145,6 +143,7 @@ const PillNav = ({
         });
       }
     }
+
 
     return () => window.removeEventListener('resize', onResize);
   }, [items, ease, initialLoadAnimation]);
@@ -187,27 +186,44 @@ const PillNav = ({
   const toggleMobileMenu = () => {
     const newState = !isMobileMenuOpen;
     setIsMobileMenuOpen(newState);
+
+    const hamburger = hamburgerRef.current;
     const menu = mobileMenuRef.current;
+
+    if (hamburger) {
+      const lines = hamburger.querySelectorAll('.hamburger-line');
+      if (newState) {
+        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
+        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+      } else {
+        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
+        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+      }
+    }
 
     if (menu) {
       if (newState) {
         gsap.set(menu, { visibility: 'visible' });
         gsap.fromTo(
           menu,
-          { opacity: 0, y: -20 },
+          { opacity: 0, y: 10, scaleY: 1 },
           {
             opacity: 1,
             y: 0,
+            scaleY: 1,
             duration: 0.3,
             ease,
+            transformOrigin: 'top center'
           }
         );
       } else {
         gsap.to(menu, {
           opacity: 0,
-          y: -20,
+          y: 10,
+          scaleY: 1,
           duration: 0.2,
           ease,
+          transformOrigin: 'top center',
           onComplete: () => {
             gsap.set(menu, { visibility: 'hidden' });
           }
@@ -232,17 +248,7 @@ const PillNav = ({
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     
     if(isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-      const menu = mobileMenuRef.current;
-      gsap.to(menu, {
-        opacity: 0,
-        y: -20,
-        duration: 0.2,
-        ease,
-        onComplete: () => {
-          gsap.set(menu, { visibility: 'hidden' });
-        }
-      });
+      toggleMobileMenu();
     }
   };
 
@@ -265,8 +271,8 @@ const PillNav = ({
             ref={logoRef}
             onClick={(e) => scrollToSection(e, '#home')}
         >
-            <div ref={logoElRef} className='font-heading font-bold text-lg'>
-                {logoText}
+            <div ref={logoElRef} className='font-heading font-bold text-lg text-primary-foreground'>
+                {logoText.charAt(0)}
             </div>
         </a>
 
@@ -333,7 +339,8 @@ const PillNav = ({
           aria-label="Toggle menu"
           ref={hamburgerRef}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <span className="hamburger-line" />
+          <span className="hamburger-line" />
         </button>
       </nav>
 
@@ -344,7 +351,11 @@ const PillNav = ({
               <a
                   href={item.href}
                   className={cn('mobile-menu-link', { 'is-active': activeHref === item.href })}
-                  onClick={(e) => scrollToSection(e, item.href)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                    toggleMobileMenu();
+                  }}
               >
                   {item.label}
               </a>
