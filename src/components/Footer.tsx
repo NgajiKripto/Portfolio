@@ -1,23 +1,23 @@
 import React from 'react';
-import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, href: '#' },
-    { icon: Linkedin, href: '#' },
-    { icon: Twitter, href: '#' },
+    { name: 'LinkedIn', href: '#' },
+    { name: 'GitHub', href: '#' },
+    { name: 'Twitter', href: '#' },
+    { name: 'Email', href: 'mailto:hello@rakapratama.dev' },
   ];
   
   return (
-    <footer className="border-t border-border/50">
-      <div className="container mx-auto py-8 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Raka Pratama. Semua hak cipta dilindungi.
-        </p>
-        <div className="flex items-center gap-4">
-          {socialLinks.map((link, index) => (
-            <a key={index} href={link.href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <link.icon size={20} />
+    <footer className="bg-slate-50 dark:bg-slate-900 w-full py-12 border-t border-slate-200 dark:border-slate-800">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="font-bold text-slate-900 dark:text-white font-heading text-sm opacity-80">
+          © {new Date().getFullYear()} Raka Pratama. Digital Consultant.
+        </div>
+        <div className="flex space-x-6">
+          {socialLinks.map((link) => (
+            <a key={link.name} href={link.href} className="text-slate-500 dark:text-slate-400 font-body text-sm transition-all hover:text-primary">
+              {link.name}
             </a>
           ))}
         </div>

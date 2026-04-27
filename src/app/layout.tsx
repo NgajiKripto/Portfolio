@@ -16,13 +16,9 @@ export default function RootLayout({
   return (
     <html lang="id" className="dark" style={{ colorScheme: 'dark' }} suppressHydrationWarning>
       <head>
-        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&f[]=general-sans@400,500&display=swap" rel="stylesheet" />
-        <style>{`
-          :root {
-            --font-satoshi: 'Satoshi', sans-serif;
-            --font-general-sans: 'General Sans', sans-serif;
-          }
-        `}</style>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@600;700&display=swap" rel="stylesheet" />
       </head>
       <body
         className={cn('font-body bg-background text-foreground antialiased')}

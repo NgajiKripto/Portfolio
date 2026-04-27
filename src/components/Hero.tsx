@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Button } from './ui/button';
 
 const Hero = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -15,52 +17,53 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative h-screen w-full flex items-center justify-center text-center overflow-hidden">
-        {/* Subtle background gradient */}
-        <div className="absolute inset-0 z-0 bg-background">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/70"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-        </div>
-
-      <motion.div
-        initial="hidden"
-        animate="show"
-        viewport={{ once: true }}
-        variants={{
-          hidden: {},
-          show: {
-            transition: {
-              staggerChildren: 0.15,
-            },
-          },
-        }}
-        className="relative z-10 container mx-auto px-4 md:px-6"
-      >
-        <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="font-body text-primary font-medium mb-4">
-          Raka Pratama – Full-Stack Developer & Digital Consultant
-        </motion.p>
-        <motion.h1 
-          variants={FADE_UP_ANIMATION_VARIANTS}
-          className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground"
+    <section id="home" className="pt-40 pb-28 px-6 max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row items-center gap-12">
+        <motion.div 
+            initial="hidden"
+            animate="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}
+            className="w-full md:w-1/2 space-y-6 text-center md:text-left"
         >
-          Tingkatkan Bisnis Anda dengan<br/>Solusi Digital Terpadu
-        </motion.h1>
-        <motion.p 
-          variants={FADE_UP_ANIMATION_VARIANTS}
-          className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground"
-        >
-          Saya merancang dan membangun pengalaman digital premium yang berorientasi pada hasil, membantu bisnis bertumbuh di era modern.
-        </motion.p>
-        <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="mt-8 flex justify-center">
-            <a 
-              href="#contact" 
-              onClick={scrollToContact}
-              className="group inline-flex items-center justify-center px-8 py-3 text-base font-medium text-primary-foreground bg-primary rounded-full hover:bg-accent transition-colors shadow-lg shadow-primary/20"
-            >
-              Konsultasi Gratis
-            </a>
+            <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="font-heading text-4xl md:text-5xl text-primary font-bold">
+                Tingkatkan Bisnis Anda dengan Solusi Digital Terpadu
+            </motion.h1>
+            <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="font-body text-lg text-muted-foreground max-w-2xl mx-auto md:mx-0">
+                Saya Raka Pratama, seorang Full-Stack Developer dan Digital Consultant yang berdedikasi membangun aplikasi web modern, cepat, dan terukur untuk mendorong pertumbuhan bisnis Anda ke level selanjutnya.
+            </motion.p>
+            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                <a href="#contact" onClick={scrollToContact}>
+                    <Button size="lg" className="w-full sm:w-auto px-8 py-4 rounded-md text-sm tracking-wider uppercase">Konsultasi Gratis</Button>
+                </a>
+                <a href="#services">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 py-4 rounded-md text-sm tracking-wider uppercase">Lihat Layanan</Button>
+                </a>
+            </motion.div>
         </motion.div>
-      </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="w-full md:w-1/2 relative"
+        >
+            <div className="aspect-[4/3] rounded-lg bg-border/20 overflow-hidden border border-border/20 shadow-lg">
+                <Image 
+                    src="https://picsum.photos/seed/workspace/800/600" 
+                    alt="Raka Pratama Workspace"
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover"
+                    data-ai-hint="minimalist workspace"
+                />
+            </div>
+        </motion.div>
     </section>
   );
 };

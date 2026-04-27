@@ -4,61 +4,62 @@ import React from 'react';
 import Image from 'next/image';
 import { testimonials } from '@/data/testimonials';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import { Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
+
 
 const Testimonials = () => {
-  return (
-    <section id="testimonials" className="bg-secondary/30 py-24">
-      <div className="container mx-auto px-4 md:px-6 text-center">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight">
-          Apa Kata Klien Saya
-        </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-          Kredibilitas dibangun dari hasil dan kepuasan.
-        </p>
+    const FADE_UP_ANIMATION_VARIANTS = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } },
+    };
 
-        <Carousel
-          opts={{
-            align: 'start',
-            loop: true,
-          }}
-          className="w-full max-w-4xl mx-auto mt-16"
+  return (
+    <section id="testimonials" className="py-28 px-6 max-w-6xl mx-auto">
+        <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={FADE_UP_ANIMATION_VARIANTS}
+            className="mb-16 text-center md:text-left"
         >
-          <CarouselContent>
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1 h-full">
-                  <Card className="h-full flex flex-col justify-between text-left bg-card/50 border-border/50">
-                    <CardContent className="p-6">
-                      <p className="italic text-foreground/90">"{testimonial.quote}"</p>
-                    </CardContent>
-                    <div className="flex items-center gap-4 p-6 pt-0">
-                      <Image
+            <h2 className="font-heading text-4xl text-primary mb-4">Apa Kata Klien</h2>
+            <p className="font-body text-lg text-muted-foreground max-w-2xl">Pengalaman mereka yang telah bekerja sama dalam mentransformasi bisnis digital.</p>
+        </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {testimonials.map((testimonial, index) => (
+          <motion.div
+            key={index}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ delay: index * 0.15 }}
+            variants={FADE_UP_ANIMATION_VARIANTS}
+          >
+            <Card className="bg-card p-8 rounded-lg border border-border/20 h-full">
+                <CardContent className="p-0">
+                <Quote className="w-8 h-8 text-primary/50 mb-6" />
+                <p className="font-body text-lg text-muted-foreground italic mb-8">"{testimonial.quote}"</p>
+                <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-muted">
+                    <Image
                         src={testimonial.avatar}
                         alt={testimonial.name}
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <p className="font-bold text-sm text-foreground">{testimonial.name}</p>
-                        <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                      </div>
+                        width={48}
+                        height={48}
+                        className="w-full h-full object-cover"
+                    />
                     </div>
-                  </Card>
+                    <div>
+                    <h4 className="font-display text-sm font-semibold text-primary">{testimonial.name}</h4>
+                    <p className="font-body text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:inline-flex" />
-          <CarouselNext className="hidden md:inline-flex" />
-        </Carousel>
+                </CardContent>
+            </Card>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

@@ -1,20 +1,14 @@
 export const testimonials = [
   {
-    name: "Anya Sharma",
-    role: "CEO, Inovasi Startup",
-    quote: "Raka mengubah visi kami menjadi kenyataan dengan kecepatan dan presisi yang luar biasa. Kemampuan teknis dan wawasan desainnya tak tertandingi.",
-    avatar: "https://ui-avatars.com/api/?name=Anya+Sharma&background=1e293b&color=fafafa&bold=true",
+    name: "Budi Santoso",
+    role: "CEO, TechNusantara",
+    quote: "Raka memberikan solusi yang jauh melampaui ekspektasi kami. Website baru ini tidak hanya cepat, tapi juga secara signifikan meningkatkan konversi penjualan kami.",
+    avatar: "https://picsum.photos/seed/budi/100/100",
   },
   {
-    name: "David Chen",
-    role: "Marketing Manager, TechCorp",
-    quote: "Landing page baru yang dibuat Raka meningkatkan konversi kami sebesar 35%. Prosesnya transparan dan berorientasi pada hasil.",
-    avatar: "https://ui-avatars.com/api/?name=David+Chen&background=1e293b&color=fafafa&bold=true",
-  },
-  {
-    name: "Sarah Lee",
-    role: "Founder, Creative Studio",
-    quote: "Dia bukan hanya seorang developer, tapi juga seorang konsultan yang berharga. Raka benar-benar memahami tujuan bisnis dan menerjemahkannya ke dalam solusi digital.",
-    avatar: "https://ui-avatars.com/api/?name=Sarah+Lee&background=1e293b&color=fafafa&bold=true",
+    name: "Siti Rahma",
+    role: "Product Manager, FinServe",
+    quote: "Kerja sama yang sangat profesional. Pemahaman Raka tentang UX sangat membantu merapikan alur aplikasi internal perusahaan kami.",
+    avatar: "https://picsum.photos/seed/siti/100/100",
   },
 ];

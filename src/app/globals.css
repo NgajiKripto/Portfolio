@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 224 71.4% 4.1%; /* #08090a */
-    --foreground: 210 20% 98%; /* #fafafa */
+    --background: 270 17% 98%; /* #fbf9fb */
+    --foreground: 270 4% 11%; /* #1b1b1d */
     
-    --card: 224 71.4% 6.1%; /* #0c0e10 */
-    --card-foreground: 210 20% 98%; /* #fafafa */
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 270 4% 11%;
     
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 270 17% 98%;
+    --popover-foreground: 270 4% 11%;
     
-    --primary: 158 29% 51%; /* #6aa383 sage green */
-    --primary-foreground: 210 20% 98%;
+    --primary: 88 17% 60%; /* #9caf88 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 27.9% 16.9%; /* #1e293b */
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 162 28% 32%; /* #3a6758 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 215 20.2% 65.1%; /* #94a3b8 */
+    --muted: 270 11% 96%; /* #f5f3f5 */
+    --muted-foreground: 220 7% 30%; /* #44474d */
     
-    --accent: 158 29% 41%; /* darker sage */
-    --accent-foreground: 210 20% 98%;
+    --accent: 160 38% 87%; /* #bcedda */
+    --accent-foreground: 163 100% 7%; /* #002118 */
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 79% 41%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 158 29% 51%;
+    --border: 270 8% 89%; /* #e4e2e4 */
+    --input: 270 8% 89%;
+    --ring: 88 17% 60%;
     
     --radius: 0.5rem;
   }
@@ -42,20 +42,14 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-/* Adding a subtle grain texture */
 body::before {
   content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
-  opacity: 0.03;
-  z-index: -1;
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
+  z-index: -1;
 }

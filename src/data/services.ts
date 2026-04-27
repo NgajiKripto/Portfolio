@@ -1,24 +1,24 @@
-import { Monitor, Sparkles, LineChart, ShoppingBag } from 'lucide-react';
+import { Code, Palette, TrendingUp, Store } from 'lucide-react';
 
 export const services = [
   {
-    icon: Monitor,
+    icon: Code,
     title: "Custom Website Development",
-    description: "Dari landing page hingga aplikasi web kompleks dengan Next.js. Fokus pada performa, skalabilitas, dan kode berkualitas.",
+    description: "Pengembangan website khusus yang cepat, aman, dan disesuaikan dengan kebutuhan bisnis spesifik Anda.",
   },
   {
-    icon: Sparkles,
+    icon: Palette,
     title: "UI/UX Design",
-    description: "Desain antarmuka modern yang fungsional dan indah. Berorientasi konversi dan pengalaman pengguna yang mulus.",
+    description: "Desain antarmuka yang intuitif dan menarik untuk memberikan pengalaman pengguna terbaik.",
   },
   {
-    icon: LineChart,
+    icon: TrendingUp,
     title: "SEO & Performance",
-    description: "Optimasi Core Web Vitals, struktur data, dan strategi konten untuk mendominasi peringkat pencarian.",
+    description: "Optimasi kecepatan dan visibilitas mesin pencari untuk menjangkau audiens yang lebih luas.",
   },
   {
-    icon: ShoppingBag,
+    icon: Store,
     title: "E-commerce Solution",
-    description: "Integrasi toko online, gateway pembayaran, dan manajemen produk untuk mendorong penjualan online Anda.",
+    description: "Membangun platform toko online yang tangguh dengan integrasi pembayaran yang aman.",
   },
 ];
