@@ -11,7 +11,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-28 px-6 bg-muted/50 border-y border-border/10">
+    <section id="services" className="py-28 px-6 bg-secondary">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
@@ -20,8 +20,8 @@ const Services = () => {
           variants={FADE_UP_ANIMATION_VARIANTS}
           className="mb-16 text-center md:text-left"
         >
-          <h2 className="font-heading text-4xl text-primary mb-4">Layanan Digital</h2>
-          <p className="font-body text-lg text-muted-foreground max-w-2xl">Solusi komprehensif dari konsep hingga peluncuran untuk memastikan kesuksesan produk digital Anda.</p>
+          <h2 className="font-heading text-4xl text-secondary-foreground mb-4">Layanan Digital</h2>
+          <p className="font-body text-lg text-secondary-foreground/80 max-w-2xl">Solusi komprehensif dari konsep hingga peluncuran untuk memastikan kesuksesan produk digital Anda.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -33,13 +33,13 @@ const Services = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.1 }}
               variants={FADE_UP_ANIMATION_VARIANTS}
-              className="bg-card p-8 rounded-lg border border-border/20 hover:border-ring/50 transition-colors group"
+              className="bg-secondary-foreground/10 p-8 rounded-lg border border-secondary-foreground/20 hover:bg-secondary-foreground/20 transition-colors group"
             >
               <div className="mb-6">
-                <service.icon className="w-10 h-10 text-primary" />
+                <service.icon className="w-10 h-10 text-secondary-foreground" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-foreground mb-3">{service.title}</h3>
-              <p className="font-body text-muted-foreground">{service.description}</p>
+              <h3 className="font-heading text-xl font-semibold text-secondary-foreground mb-3">{service.title}</h3>
+              <p className="font-body text-secondary-foreground/80">{service.description}</p>
             </motion.div>
           ))}
         </div>

@@ -13,11 +13,11 @@
     --popover: 42 57% 95%;
     --popover-foreground: 240 10% 20%;
     
-    --primary: 245 83% 26%; /* #170C79 */
+    --primary: 15 90% 55%; /* #f26829 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 185 38% 71%; /* #8ACBD0 */
-    --secondary-foreground: 185 25% 25%;
+    --secondary: 220 87% 55%; /* blue */
+    --secondary-foreground: 0 0% 100%; /* white */
 
     --muted: 42 25% 85%;
     --muted-foreground: 240 5% 50%;
@@ -30,7 +30,7 @@
 
     --border: 42 25% 80%;
     --input: 42 25% 80%;
-    --ring: 245 83% 26%;
+    --ring: 15 90% 55%;
     
     --radius: 0.5rem;
   }
