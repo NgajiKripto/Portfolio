@@ -3,74 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 228 39% 6%; /* #0A0F1A */
-    --foreground: 240 8% 90%; /* #E3E3E6 */
-    --card: 223 35% 9%; /* #0F172A */
-    --card-foreground: 240 8% 90%;
-    --popover: 228 39% 6%;
-    --popover-foreground: 240 8% 90%;
-    --primary: 181 100% 50%; /* #00F5FF */
-    --primary-foreground: 228 39% 6%;
-    --secondary: 223 27% 14%; /* #182235 */
-    --secondary-foreground: 240 8% 90%;
-    --muted: 223 27% 14%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 181 100% 50%;
-    --accent-foreground: 228 39% 6%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 223 27% 14%;
-    --input: 223 27% 14%;
-    --ring: 181 100% 50%;
-    --radius: 0.5rem;
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
- 
-  .dark {
-    --background: 228 39% 6%;
-    --foreground: 240 8% 90%;
-    --card: 223 35% 9%;
-    --card-foreground: 240 8% 90%;
-    --popover: 228 39% 6%;
-    --popover-foreground: 240 8% 90%;
-    --primary: 181 100% 50%;
-    --primary-foreground: 228 39% 6%;
-    --secondary: 223 27% 14%;
-    --secondary-foreground: 240 8% 90%;
-    --muted: 223 27% 14%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 181 100% 50%;
-    --accent-foreground: 228 39% 6%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 223 27% 14%;
-    --input: 223 27% 14%;
-    --ring: 181 100% 50%;
+  .material-symbols-outlined.filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 }
  
 @layer base {
-  * {
-    @apply border-border;
-  }
   html {
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('/noise.svg');
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: 100;
   }
 }

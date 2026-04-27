@@ -1,37 +1,42 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const Hero = () => {
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-1');
+
   return (
-    <section className="relative flex h-screen items-center justify-center overflow-hidden pt-20 text-center">
-      <div className="absolute inset-0 -z-10 bg-grid-pattern bg-grid-pattern [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <div className="container px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        >
-          <h1 className="text-4xl font-headline font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            Solusi Digital Terpadu untuk Bisnis Anda
-          </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground md:text-xl">
-            Tingkatkan bisnis Anda dengan layanan pembuatan landing page, optimasi Google Maps, dan manajemen e-commerce profesional dari ElevateDigital.
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button size="lg" asChild>
-              <a href="#contact">
-                Mulai Proyek <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#services">Lihat Layanan</a>
-            </Button>
-          </div>
-        </motion.div>
+    <section id="home" className="max-w-container-max mx-auto px-gutter py-xxl md:py-[120px] flex flex-col md:flex-row items-center gap-xxl">
+      <div className="flex-1 space-y-lg">
+        <h1 className="font-headline-xl text-headline-xl text-on-surface">Elevate Your Business with Precision Digital Solutions.</h1>
+        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          We engineer uncompromising digital experiences that drive growth and deliver results.
+        </p>
+        <div className="flex flex-wrap gap-md pt-md">
+          <Button className="bg-primary text-on-primary px-xl py-md rounded-full font-label-sm text-label-sm hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 shadow-[0_2px_10px_-2px_rgba(14,55,86,0.2)]">
+            Get Started
+          </Button>
+          <Button variant="outline" className="bg-transparent text-primary border border-primary px-xl py-md rounded-full font-label-sm text-label-sm hover:bg-surface-container transition-colors duration-300">
+            Our Services
+          </Button>
+        </div>
+      </div>
+      <div className="flex-1 w-full relative">
+        <div className="aspect-square rounded-xl bg-surface-container-high overflow-hidden shadow-[0_8px_30px_-4px_rgba(14,55,86,0.1)] relative">
+          {heroImage && (
+             <Image 
+              alt={heroImage.description}
+              className="object-cover w-full h-full mix-blend-overlay opacity-80"
+              src={heroImage.imageUrl}
+              fill
+              data-ai-hint={heroImage.imageHint}
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+        </div>
       </div>
     </section>
   );

@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "Abstract digital representation of data flows and business growth with sleek, modern aesthetic in cool slate and blue tones.",
+      "imageUrl": "https://picsum.photos/seed/heroRef/800/800",
+      "imageHint": "abstract digital"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Professional headshot of a corporate executive in a modern office.",
+      "imageUrl": "https://picsum.photos/seed/testRef1/100/100",
+      "imageHint": "man headshot"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Professional headshot of a female tech founder with a clean, well-lit background.",
+      "imageUrl": "https://picsum.photos/seed/testRef2/100/100",
+      "imageHint": "woman headshot"
+    }
+  ]
 }

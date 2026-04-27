@@ -1,42 +1,35 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { Label } from '@/components/ui/label';
 
 const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [errors, setErrors] = useState({ name: false, email: false, message: false });
-
-  const validate = () => {
-    const newErrors = {
-      name: !formData.name,
-      email: !formData.email,
-      message: !formData.message,
-    };
-    setErrors(newErrors);
-    return !newErrors.name && !newErrors.email && !newErrors.message;
-  };
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: '',
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) {
+    if (formData.firstName && formData.lastName && formData.email && formData.message) {
       console.log('Form submitted:', formData);
       toast({
-        title: 'Pesan Terkirim!',
-        description: 'Terima kasih telah menghubungi kami. Kami akan segera membalasnya.',
+        title: 'Inquiry Submitted!',
+        description: 'Thank you for contacting us. We will get back to you shortly.',
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ firstName: '', lastName: '', email: '', message: '' });
     } else {
       toast({
         variant: 'destructive',
-        title: 'Gagal Mengirim',
-        description: 'Mohon lengkapi semua kolom yang wajib diisi.',
+        title: 'Submission Failed',
+        description: 'Please fill out all required fields.',
       });
     }
   };
@@ -44,66 +37,89 @@ const Contact = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
-    if (value) {
-      setErrors((prev) => ({ ...prev, [id]: false }));
-    }
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
-            Hubungi Kami
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Punya pertanyaan atau ide proyek? Jangan ragu untuk mengirim pesan.
-          </p>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto mt-16 max-w-xl"
-        >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="name">Nama</Label>
-              <Input
-                id="name"
-                placeholder="Nama lengkap Anda"
-                value={formData.name}
-                onChange={handleChange}
-                className={errors.name ? 'border-destructive' : ''}
-              />
+    <section id="contact" className="max-w-4xl mx-auto px-gutter py-xxl mb-xxl">
+      <div className="bg-surface-container-lowest rounded-xl shadow-[0_8px_30px_-4px_rgba(14,55,86,0.08)] overflow-hidden flex flex-col md:flex-row border border-outline-variant/20">
+        <div className="bg-primary text-on-primary p-xl md:w-1/3 flex flex-col justify-between">
+          <div>
+            <h2 className="font-headline-lg text-headline-lg mb-sm">Start Your Ascent.</h2>
+            <p className="font-body-md text-body-md text-on-primary/80 mb-xl">
+              Let's discuss how we can engineer growth for your organization.
+            </p>
+          </div>
+          <div className="space-y-md">
+            <div className="flex items-center gap-sm">
+              <span className="material-symbols-outlined">mail</span>
+              <span className="font-label-sm text-label-sm">hello@elevatedigital.com</span>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+            <div className="flex items-center gap-sm">
+              <span className="material-symbols-outlined">location_city</span>
+              <span className="font-label-sm text-label-sm">Global HQ, Tech District</span>
+            </div>
+          </div>
+        </div>
+        <div className="p-xl md:w-2/3 bg-surface-container-lowest">
+          <form onSubmit={handleSubmit} className="space-y-lg">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
+              <div>
+                <Label className="block font-label-sm text-label-sm text-on-surface mb-xs" htmlFor="firstName">
+                  First Name
+                </Label>
+                <Input
+                  className="w-full bg-[#F1F3F5] border-transparent border-b-outline-variant focus:border-b-primary focus:ring-0 rounded-none rounded-t-DEFAULT transition-colors py-sm px-md font-body-md text-on-surface"
+                  id="firstName"
+                  type="text"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <Label className="block font-label-sm text-label-sm text-on-surface mb-xs" htmlFor="lastName">
+                  Last Name
+                </Label>
+                <Input
+                  className="w-full bg-[#F1F3F5] border-transparent border-b-outline-variant focus:border-b-primary focus:ring-0 rounded-none rounded-t-DEFAULT transition-colors py-sm px-md font-body-md text-on-surface"
+                  id="lastName"
+                  type="text"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div>
+              <Label className="block font-label-sm text-label-sm text-on-surface mb-xs" htmlFor="email">
+                Corporate Email
+              </Label>
               <Input
+                className="w-full bg-[#F1F3F5] border-transparent border-b-outline-variant focus:border-b-primary focus:ring-0 rounded-none rounded-t-DEFAULT transition-colors py-sm px-md font-body-md text-on-surface"
                 id="email"
                 type="email"
-                placeholder="email@anda.com"
                 value={formData.email}
                 onChange={handleChange}
-                className={errors.email ? 'border-destructive' : ''}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="message">Pesan</Label>
+            <div>
+              <Label className="block font-label-sm text-label-sm text-on-surface mb-xs" htmlFor="message">
+                Project Details
+              </Label>
               <Textarea
+                className="w-full bg-[#F1F3F5] border-transparent border-b-outline-variant focus:border-b-primary focus:ring-0 rounded-none rounded-t-DEFAULT transition-colors py-sm px-md font-body-md text-on-surface resize-none"
                 id="message"
-                placeholder="Tuliskan pesan Anda di sini..."
+                rows={4}
                 value={formData.message}
                 onChange={handleChange}
-                className={errors.message ? 'border-destructive' : ''}
               />
             </div>
-            <Button type="submit" className="w-full" size="lg">
-              Kirim Pesan
+            <Button
+              className="w-full bg-primary text-on-primary py-md rounded-full font-label-sm text-label-sm hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 shadow-[0_2px_10px_-2px_rgba(14,55,86,0.2)]"
+              type="submit"
+            >
+              Submit Inquiry
             </Button>
           </form>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -2,94 +2,69 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const testimonials = [
   {
-    name: 'Budi Santoso',
-    role: 'CEO, Startup Maju',
+    id: 'testimonial-1',
+    name: 'Marcus Thorne',
+    role: 'Director of Digital, Nexus Retail',
     quote:
-      'Landing page yang dibuat ElevateDigital benar-benar mengubah permainan. Konversi kami meningkat 50% dalam sebulan!',
-    avatar: 'Budi Santoso',
+      "ElevateDigital transformed our online presence. Their structured approach to our e-commerce platform resulted in a 40% increase in conversion within the first quarter. Pure professionals.",
   },
   {
-    name: 'Siti Aminah',
-    role: 'Pemilik, Kopi Kenangan Lokal',
+    id: 'testimonial-2',
+    name: 'Sarah Jenkins',
+    role: 'CEO, Apex Innovations',
     quote:
-      'Berkat optimasi Google Maps, kedai kopi saya sekarang selalu ramai. Peringkat pertama di pencarian lokal!',
-    avatar: 'Siti Aminah',
-  },
-  {
-    name: 'Rian Pratama',
-    role: 'Manajer, E-commerce Fashion',
-    quote:
-      'Manajemen toko online jadi jauh lebih mudah dan efisien. Tim ElevateDigital sangat responsif dan profesional.',
-    avatar: 'Rian Pratama',
-  },
-  {
-    name: 'Dewi Lestari',
-    role: 'Founder, Skincare Organik',
-    quote:
-      'Identitas merek baru kami terlihat luar biasa. Desainnya modern dan sangat mewakili nilai-nilai perusahaan kami.',
-    avatar: 'Dewi Lestari',
+      'The clarity and precision of their work is unmatched. Their landing page optimization campaign gave us an ROI that exceeded our most optimistic projections.',
   },
 ];
 
 const Testimonials = () => {
+  const testimonialImages = {
+    'testimonial-1': PlaceHolderImages.find(p => p.id === 'testimonial-1'),
+    'testimonial-2': PlaceHolderImages.find(p => p.id === 'testimonial-2'),
+  };
+  
   return (
-    <section id="testimonials" className="bg-secondary py-20 sm:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
-            Apa Kata Mereka?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Kisah sukses dari klien-klien yang telah mempercayai kami.
-          </p>
-        </div>
-        <Carousel
-          opts={{
-            align: 'start',
-            loop: true,
-          }}
-          className="mx-auto mt-16 w-full max-w-4xl"
-        >
-          <CarouselContent>
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <Card className="h-full">
-                    <CardContent className="flex h-full flex-col items-center justify-center p-6 text-center">
-                      <Image
-                        src={`https://ui-avatars.com/api/?name=${testimonial.avatar.replace(' ', '+')}&background=5AA8D6&color=FFFFFF`}
-                        alt={testimonial.name}
-                        width={64}
-                        height={64}
-                        className="mb-4 rounded-full"
-                      />
-                      <p className="flex-grow font-body italic text-muted-foreground">
-                        "{testimonial.quote}"
-                      </p>
-                      <div className="mt-4">
-                        <p className="font-bold text-foreground">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+    <section id="testimonials" className="max-w-container-max mx-auto px-gutter py-xxl mb-xxl">
+      <div className="text-center space-y-sm mb-xl">
+        <span className="inline-block px-md py-xs rounded-full bg-primary/5 text-primary font-label-sm text-label-sm">
+          Client Success Stories
+        </span>
+        <h2 className="font-headline-lg text-headline-lg text-on-surface">Proven Outcomes</h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
+        {testimonials.map((testimonial) => {
+            const image = testimonialImages[testimonial.id];
+            return (
+                <div key={testimonial.id} className="bg-surface-container-lowest p-xl rounded-xl shadow-[0_4px_16px_-4px_rgba(14,55,86,0.06)] border border-outline-variant/20 flex flex-col justify-between">
+                    <div>
+                        <span className="material-symbols-outlined filled text-primary-container mb-md text-4xl opacity-50">format_quote</span>
+                        <p className="font-body-lg text-body-lg text-on-surface-variant mb-lg italic">
+                            "{testimonial.quote}"
+                        </p>
+                    </div>
+                    <div className="flex items-center gap-md">
+                        {image && (
+                            <Image
+                                alt={image.description}
+                                className="w-12 h-12 rounded-full object-cover"
+                                src={image.imageUrl}
+                                width={48}
+                                height={48}
+                                data-ai-hint={image.imageHint}
+                            />
+                        )}
+                        <div>
+                            <h4 className="font-label-sm text-label-sm text-on-surface font-bold">{testimonial.name}</h4>
+                            <p className="font-body-md text-sm text-on-surface-variant">{testimonial.role}</p>
+                        </div>
+                    </div>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+            )
+        })}
       </div>
     </section>
   );

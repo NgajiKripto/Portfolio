@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import { Syne, Manrope } from 'next/font/google';
+import { Inter, Manrope } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const syne = Syne({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-syne',
+  variable: '--font-inter',
 });
 
 const manrope = Manrope({
@@ -18,9 +18,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'ElevateDigital - Solusi Digital Terpadu untuk Bisnis Anda',
+  title: 'ElevateDigital - Precision Digital Solutions',
   description:
-    'Tingkatkan bisnis Anda dengan layanan pembuatan landing page, optimasi Google Maps, dan manajemen e-commerce profesional dari ElevateDigital.',
+    'We engineer uncompromising digital experiences that drive growth and deliver results.',
 };
 
 export default function RootLayout({
@@ -29,17 +29,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+       <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
       <body
         className={cn(
-          'font-body antialiased',
-          syne.variable,
+          'font-sans',
+          inter.variable,
           manrope.variable
         )}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

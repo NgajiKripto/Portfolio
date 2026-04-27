@@ -1,23 +1,21 @@
 import React from 'react';
-import { Twitter, Linkedin, Github } from 'lucide-react';
 
 const Footer = () => {
+  const footerLinks = ['LinkedIn', 'Twitter', 'Instagram', 'Privacy', 'Terms'];
+  
   return (
-    <footer className="border-t border-border/50 bg-secondary">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
-        <p className="text-sm text-muted-foreground">
+    <footer className="bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 font-manrope text-xs uppercase tracking-widest w-full py-16 border-t border-slate-100 dark:border-slate-800">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8 gap-8">
+        <div className="text-lg font-bold text-slate-900 dark:text-white">ElevateDigital</div>
+        <div className="flex flex-wrap justify-center gap-md">
+          {footerLinks.map((link) => (
+            <a key={link} className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-opacity opacity-100 hover:opacity-80" href="#">
+              {link}
+            </a>
+          ))}
+        </div>
+        <div className="text-slate-400 dark:text-slate-500 text-center md:text-right">
           © {new Date().getFullYear()} ElevateDigital. All rights reserved.
-        </p>
-        <div className="flex items-center gap-4">
-          <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-            <Twitter className="h-5 w-5" />
-          </a>
-          <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-            <Linkedin className="h-5 w-5" />
-          </a>
-          <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
-            <Github className="h-5 w-5" />
-          </a>
         </div>
       </div>
     </footer>
