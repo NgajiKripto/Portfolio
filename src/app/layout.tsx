@@ -1,16 +1,25 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Syne, Manrope } from 'next/font/google';
 import './globals.css';
+import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 
-const inter = Inter({
+const syne = Syne({
   subsets: ['latin'],
-  variable: '--font-inter',
+  display: 'swap',
+  variable: '--font-syne',
+});
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-manrope',
 });
 
 export const metadata: Metadata = {
-  title: 'FastTrackJob - AI-Driven Recruitment',
-  description: 'Experience the future of recruitment with our Zero-Storage AI. Instant matching, live applicant leaderboards, and automated workflows designed to accelerate your hiring process without the clutter.',
+  title: 'ElevateDigital - Solusi Digital Terpadu untuk Bisnis Anda',
+  description:
+    'Tingkatkan bisnis Anda dengan layanan pembuatan landing page, optimasi Google Maps, dan manajemen e-commerce profesional dari ElevateDigital.',
 };
 
 export default function RootLayout({
@@ -19,13 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className={`${inter.variable} font-body antialiased`}>
+    <html lang="id" className="dark">
+      <body
+        className={cn(
+          'font-body antialiased',
+          syne.variable,
+          manrope.variable
+        )}
+      >
         {children}
         <Toaster />
       </body>

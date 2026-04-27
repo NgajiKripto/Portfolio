@@ -1,40 +1,19 @@
-'use client';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
+import Hero from '@/components/Hero';
+import Navbar from '@/components/Navbar';
+import Services from '@/components/Services';
+import Testimonials from '@/components/Testimonials';
 
-import React from 'react';
-import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
-import { MinimalistHero } from '@/components/ui/minimalist-hero';
-
-const Home = () => {
-  const navLinks = [
-    { label: 'HOME', href: '#' },
-    { label: 'PRODUCT', href: '#' },
-    { label: 'STORE', href: '#' },
-    { label: 'ABOUT US', href: '#' },
-  ];
-
-  const socialLinks = [
-    { icon: Facebook, href: '#' },
-    { icon: Instagram, href: '#' },
-    { icon: Twitter, href: '#' },
-    { icon: Linkedin, href: '#' },
-  ];
-
+export default function Home() {
   return (
-    <MinimalistHero
-      logoText="mnmlst."
-      navLinks={navLinks}
-      mainText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultrices, justo vel tempus."
-      readMoreLink="#"
-      imageSrc="https://picsum.photos/seed/hero-portrait/400/600"
-      imageAlt="A portrait of a person in a black turtleneck, in profile."
-      overlayText={{
-        part1: 'less is',
-        part2: 'more.',
-      }}
-      socialLinks={socialLinks}
-      locationText="Arlington Heights, IL"
-    />
+    <main className="flex flex-col min-h-screen">
+      <Navbar />
+      <Hero />
+      <Services />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </main>
   );
-};
-
-export default Home;
+}

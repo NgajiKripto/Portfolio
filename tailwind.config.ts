@@ -1,24 +1,26 @@
 import type { Config } from 'tailwindcss';
 
-export default {
+const config = {
   darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
+  prefix: '',
   theme: {
     container: {
       center: true,
-      padding: '1.5rem',
+      padding: '2rem',
       screens: {
-        '2xl': '1240px',
+        '2xl': '1400px',
       },
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-inter)', 'sans-serif'],
-        headline: ['var(--font-inter)', 'sans-serif'],
+        headline: ['var(--font-syne)', 'sans-serif'],
+        body: ['var(--font-manrope)', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -74,7 +76,15 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      backgroundImage: {
+        'grid-pattern': "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+      },
+      backgroundSize: {
+        'grid-pattern': '30px 30px',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+export default config;
