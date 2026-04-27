@@ -1,0 +1,359 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { gsap } from 'gsap';
+import { Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+interface PillNavItem {
+  href: string;
+  label: string;
+  ariaLabel?: string;
+}
+
+interface PillNavProps {
+  logoText?: string;
+  items: PillNavItem[];
+  activeHref?: string;
+  className?: string;
+  ease?: string;
+  baseColor?: string;
+  pillColor?: string;
+  hoveredPillTextColor?: string;
+  pillTextColor?: string;
+  onMobileMenuClick?: () => void;
+  initialLoadAnimation?: boolean;
+}
+
+const PillNav = ({
+  logoText = 'Raka.',
+  items,
+  activeHref,
+  className = '',
+  ease = 'power3.easeOut',
+  baseColor = '#1b1b1d', // foreground
+  pillColor = '#e4e2e4', // card
+  hoveredPillTextColor = '#1b1b1d', // foreground
+  pillTextColor,
+  onMobileMenuClick,
+  initialLoadAnimation = true
+}: PillNavProps) => {
+  const resolvedPillTextColor = pillTextColor ?? baseColor;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const circleRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const tlRefs = useRef<(gsap.core.Timeline | null)[]>([]);
+  const activeTweenRefs = useRef<(gsap.core.Tween | null)[]>([]);
+  const logoElRef = useRef<HTMLDivElement>(null);
+  const logoTweenRef = useRef<gsap.core.Tween | null>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navItemsRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    circleRefs.current = circleRefs.current.slice(0, items.length);
+    tlRefs.current = tlRefs.current.slice(0, items.length);
+    activeTweenRefs.current = activeTweenRefs.current.slice(0, items.length);
+  }, [items]);
+
+  useEffect(() => {
+    const layout = () => {
+      circleRefs.current.forEach((circle, index) => {
+        if (!circle?.parentElement) return;
+
+        const pill = circle.parentElement as HTMLElement;
+        const rect = pill.getBoundingClientRect();
+        const { width: w, height: h } = rect;
+        const R = ((w * w) / 4 + h * h) / (2 * h);
+        const D = Math.ceil(2 * R) + 2;
+        const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
+        const originY = D - delta;
+
+        if(circle) {
+            circle.style.width = `${D}px`;
+            circle.style.height = `${D}px`;
+            circle.style.bottom = `-${delta}px`;
+
+            gsap.set(circle, {
+                xPercent: -50,
+                scale: 0,
+                transformOrigin: `50% ${originY}px`
+            });
+        }
+
+        const label = pill.querySelector('.pill-label');
+        const white = pill.querySelector('.pill-label-hover');
+
+        if (label) gsap.set(label, { y: 0 });
+        if (white) gsap.set(white, { y: h + 12, opacity: 0 });
+
+        tlRefs.current[index]?.kill();
+        const tl = gsap.timeline({ paused: true });
+
+        tl.to(circle, { scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: 'auto' }, 0);
+
+        if (label) {
+          tl.to(label, { y: -(h + 8), duration: 2, ease, overwrite: 'auto' }, 0);
+        }
+
+        if (white) {
+          gsap.set(white, { y: Math.ceil(h + 100), opacity: 0 });
+          tl.to(white, { y: 0, opacity: 1, duration: 2, ease, overwrite: 'auto' }, 0);
+        }
+
+        tlRefs.current[index] = tl;
+      });
+    };
+
+    layout();
+    const onResize = () => layout();
+    window.addEventListener('resize', onResize);
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(layout).catch(() => {});
+    }
+
+    const menu = mobileMenuRef.current;
+    if (menu) {
+      gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1 });
+    }
+
+    if (initialLoadAnimation) {
+      const logo = logoRef.current;
+      const navItems = navItemsRef.current;
+
+      if (logo) {
+        gsap.fromTo(logo, { opacity: 0, scale: 0.8 }, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          delay: 0.2,
+          ease
+        });
+      }
+
+      if (navItems) {
+        const items = navItems.querySelectorAll('li');
+        gsap.fromTo(items, { opacity: 0, y: 10 }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease,
+            stagger: 0.05,
+            delay: 0.4
+        });
+      }
+    }
+
+    return () => window.removeEventListener('resize', onResize);
+  }, [items, ease, initialLoadAnimation]);
+
+  const handleEnter = (i: number) => {
+    const tl = tlRefs.current[i];
+    if (!tl) return;
+    activeTweenRefs.current[i]?.kill();
+    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), {
+      duration: 0.3,
+      ease,
+      overwrite: 'auto'
+    });
+  };
+
+  const handleLeave = (i: number) => {
+    const tl = tlRefs.current[i];
+    if (!tl) return;
+    activeTweenRefs.current[i]?.kill();
+    activeTweenRefs.current[i] = tl.tweenTo(0, {
+      duration: 0.2,
+      ease,
+      overwrite: 'auto'
+    });
+  };
+
+  const handleLogoEnter = () => {
+    const el = logoElRef.current;
+    if (!el) return;
+    logoTweenRef.current?.kill();
+    gsap.set(el, { rotate: 0 });
+    logoTweenRef.current = gsap.to(el, {
+      rotate: 360,
+      duration: 0.4,
+      ease,
+      overwrite: 'auto'
+    });
+  };
+
+  const toggleMobileMenu = () => {
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+    const menu = mobileMenuRef.current;
+
+    if (menu) {
+      if (newState) {
+        gsap.set(menu, { visibility: 'visible' });
+        gsap.fromTo(
+          menu,
+          { opacity: 0, y: -20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            ease,
+          }
+        );
+      } else {
+        gsap.to(menu, {
+          opacity: 0,
+          y: -20,
+          duration: 0.2,
+          ease,
+          onComplete: () => {
+            gsap.set(menu, { visibility: 'hidden' });
+          }
+        });
+      }
+    }
+
+    onMobileMenuClick?.();
+  };
+
+  const isExternalLink = (href: string) =>
+    href.startsWith('http://') ||
+    href.startsWith('https://') ||
+    href.startsWith('//') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:');
+
+  const isRouterLink = (href: string) => href && !isExternalLink(href) && !href.startsWith('#');
+  
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    
+    if(isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+      const menu = mobileMenuRef.current;
+      gsap.to(menu, {
+        opacity: 0,
+        y: -20,
+        duration: 0.2,
+        ease,
+        onComplete: () => {
+          gsap.set(menu, { visibility: 'hidden' });
+        }
+      });
+    }
+  };
+
+
+  const cssVars = {
+    '--base': baseColor,
+    '--pill-bg': pillColor,
+    '--hover-text': hoveredPillTextColor,
+    '--pill-text': resolvedPillTextColor
+  } as React.CSSProperties;
+
+  return (
+    <div className="pill-nav-container">
+      <nav className={cn('pill-nav', className)} aria-label="Primary" style={cssVars}>
+        <a
+            className="pill-logo"
+            href={'#home'}
+            aria-label="Home"
+            onMouseEnter={handleLogoEnter}
+            ref={logoRef}
+            onClick={(e) => scrollToSection(e, '#home')}
+        >
+            <div ref={logoElRef} className='font-heading font-bold text-lg'>
+                {logoText}
+            </div>
+        </a>
+
+        <div className="pill-nav-items desktop-only" ref={navItemsRef}>
+          <ul className="pill-list" role="menubar">
+            {items.map((item, i) => (
+              <li key={item.href || `item-${i}`} role="none">
+                {isRouterLink(item.href) ? (
+                  <Link
+                    role="menuitem"
+                    href={item.href}
+                    className={cn('pill', { 'is-active': activeHref === item.href })}
+                    aria-label={item.ariaLabel || item.label}
+                    onMouseEnter={() => handleEnter(i)}
+                    onMouseLeave={() => handleLeave(i)}
+                  >
+                    <span
+                      className="hover-circle"
+                      aria-hidden="true"
+                      ref={el => {
+                        circleRefs.current[i] = el;
+                      }}
+                    />
+                    <span className="label-stack">
+                      <span className="pill-label">{item.label}</span>
+                      <span className="pill-label-hover" aria-hidden="true">
+                        {item.label}
+                      </span>
+                    </span>
+                  </Link>
+                ) : (
+                  <a
+                    role="menuitem"
+                    href={item.href}
+                    className={cn('pill font-body', { 'is-active': activeHref === item.href })}
+                    aria-label={item.ariaLabel || item.label}
+                    onMouseEnter={() => handleEnter(i)}
+                    onMouseLeave={() => handleLeave(i)}
+                    onClick={(e) => scrollToSection(e, item.href)}
+                  >
+                    <span
+                      className="hover-circle"
+                      aria-hidden="true"
+                      ref={el => {
+                        circleRefs.current[i] = el;
+                      }}
+                    />
+                    <span className="label-stack">
+                      <span className="pill-label">{item.label}</span>
+                      <span className="pill-label-hover" aria-hidden="true">
+                        {item.label}
+                      </span>
+                    </span>
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <button
+          className="mobile-menu-button mobile-only"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+          ref={hamburgerRef}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </nav>
+
+      <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
+        <ul className="mobile-menu-list">
+          {items.map((item, i) => (
+            <li key={item.href || `mobile-item-${i}`}>
+              <a
+                  href={item.href}
+                  className={cn('mobile-menu-link', { 'is-active': activeHref === item.href })}
+                  onClick={(e) => scrollToSection(e, item.href)}
+              >
+                  {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default PillNav;
