@@ -7,7 +7,7 @@ import React from 'react';
 interface BlurTextProps {
   text: string;
   delay?: number;
-  animateBy?: 'words' | 'chars';
+  animateBy?: 'words' | 'letters';
   direction?: 'top' | 'bottom' | 'left' | 'right';
   onAnimationComplete?: () => void;
   className?: string;
@@ -56,19 +56,19 @@ const BlurText: React.FC<BlurTextProps> = ({
     <motion.div
       initial="hidden"
       animate="visible"
-      transition={{ staggerChildren: (delay / 1000) * 0.2, delayChildren: 0 }}
+      transition={{ staggerChildren: 0.05, delayChildren: delay / 1000 }}
       onAnimationComplete={onAnimationComplete}
       className={cn(
-        'flex flex-wrap',
+        'flex flex-wrap justify-center',
         className,
-        animateBy === 'chars' ? 'gap-x-1' : 'gap-x-2'
+        animateBy === 'letters' ? 'gap-x-1' : 'gap-x-2'
       )}
     >
       {items.map((item, i) => (
         <motion.span
           key={i}
           variants={variants}
-          transition={{ duration: 0.5, ease: 'easeOut', delay: i * (delay / 1000 / items.length) }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           {item}
         </motion.span>

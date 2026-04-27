@@ -3,6 +3,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { FloatingPaths } from '@/components/ui/floating-paths';
+import BlurText from '@/components/ui/BlurText';
 
 const Hero = () => {
   return (
@@ -14,9 +15,13 @@ const Hero = () => {
       <FloatingPaths position={-1} color="rgba(15,23,42,0.08)" />
 
       <div className="relative z-10 space-y-lg">
-        <h1 className="font-headline-xl text-headline-xl text-on-surface">
-          Tingkatkan Bisnis Anda dengan Solusi Digital Presisi.
-        </h1>
+        <BlurText
+          text="Tingkatkan Bisnis Anda dengan Solusi Digital Presisi."
+          delay={200}
+          animateBy="words"
+          direction="top"
+          className="font-headline-xl text-headline-xl text-on-surface"
+        />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto">
           Kami merancang pengalaman digital tanpa kompromi yang mendorong pertumbuhan dan memberikan hasil.
         </p>
