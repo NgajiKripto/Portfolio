@@ -37,7 +37,7 @@ const Testimonials = () => {
             transition={{ delay: index * 0.15 }}
             variants={FADE_UP_ANIMATION_VARIANTS}
           >
-            <Card className="bg-black/50 p-8 rounded-lg border-transparent h-full">
+            <Card className="bg-primary/30 p-8 rounded-lg border-transparent h-full">
                 <CardContent className="p-0">
                 <Quote className="w-8 h-8 text-white/50 mb-6" />
                 <p className="font-body text-lg text-white italic mb-8">"{testimonial.quote}"</p>
