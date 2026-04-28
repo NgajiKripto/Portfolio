@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import ProfileCard from './ProfileCard';
 import SplitText from './ui/SplitText';
 import TextType from '@/components/ui/TextType';
+import ShinyText from '@/components/ui/ShinyText';
 
 const Hero = () => {
   const scrollToContact = (e?: React.MouseEvent<HTMLAnchorElement>) => {
@@ -44,7 +45,7 @@ const Hero = () => {
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a href="#contact" onClick={scrollToContact}>
             <Button size="lg" className="w-full sm:w-auto">
-              Konsultasi Gratis
+              <ShinyText text="Konsultasi Gratis" color="hsl(var(--primary-foreground))" shineColor="hsl(var(--accent))" />
             </Button>
           </a>
         </div>
