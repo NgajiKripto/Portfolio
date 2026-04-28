@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { services } from '@/data/services';
 import SplitText from '@/components/ui/SplitText';
+import DecryptedText from '@/components/ui/DecryptedText';
 
 const Services = () => {
   const FADE_UP_ANIMATION_VARIANTS = {
@@ -24,7 +25,13 @@ const Services = () => {
             splitType="words"
             textAlign="inherit"
           />
-          <p className="font-body text-lg text-secondary-foreground/80 max-w-2xl">Solusi komprehensif dari konsep hingga peluncuran untuk memastikan kesuksesan produk digital Anda.</p>
+          <DecryptedText
+            text="Solusi komprehensif dari konsep hingga peluncuran untuk memastikan kesuksesan produk digital Anda."
+            parentClassName="font-body text-lg text-secondary-foreground/80 max-w-2xl"
+            animateOn="view"
+            sequential={true}
+            speed={20}
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -50,7 +57,13 @@ const Services = () => {
                   textAlign="left"
                 />
               </div>
-              <p className="font-body text-secondary-foreground/80 mt-3">{service.description}</p>
+              <DecryptedText 
+                text={service.description}
+                parentClassName="font-body text-secondary-foreground/80 mt-3"
+                animateOn="view"
+                sequential={true}
+                speed={10}
+              />
             </motion.div>
           ))}
         </div>
