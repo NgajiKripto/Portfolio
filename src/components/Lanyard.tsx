@@ -78,8 +78,15 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     rot = new THREE.Vector3(),
     dir = new THREE.Vector3();
   const segmentProps = { type: 'dynamic' as const, canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
+  
+  // IMPORTANT: These files must exist in your `public` folder.
+  // - public/card.glb
+  // - public/lanyard.png
+  // The error "Could not load /card.glb" means the file is missing.
+  // Please add these files to your project to fix the error.
   const { nodes, materials } = useGLTF('/card.glb') as any;
   const texture = useTexture('/lanyard.png');
+  
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
