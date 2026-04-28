@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Mail, MapPin } from 'lucide-react';
+import ShinyText from '@/components/ui/ShinyText';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -41,7 +42,14 @@ const Contact = () => {
     <section id="contact" className="py-28 px-6 bg-secondary">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-center">
         <div className="w-full md:w-1/2 mb-10 md:mb-0">
-          <h2 className="font-heading text-4xl text-secondary-foreground mb-4">Mulai Proyek Anda</h2>
+          <ShinyText
+            text="Mulai Proyek Anda"
+            className="font-heading text-4xl mb-4"
+            color="hsl(var(--secondary-foreground))"
+            shineColor="hsl(var(--accent))"
+            speed={5}
+            yoyo={true}
+          />
           <p className="font-body text-lg text-secondary-foreground/80 mb-8 max-w-xl">Diskusikan ide Anda dan mari ciptakan solusi digital yang berdampak nyata bagi bisnis Anda.</p>
           <div className="space-y-4">
             <div className="flex items-center gap-4 text-secondary-foreground/80">
