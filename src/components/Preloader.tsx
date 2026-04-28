@@ -23,7 +23,7 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
       {visible && (
         <motion.div
           key="preloader"
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#170C79]"
           role="status"
           aria-live="polite"
           aria-label="Loading"
