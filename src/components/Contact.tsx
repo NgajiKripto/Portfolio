@@ -38,58 +38,58 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-section-padding px-6 bg-surface-container-low border-t border-outline-variant/10">
-      <div className="max-w-container-max mx-auto flex flex-col md:flex-row gap-gutter">
+    <section id="contact" className="py-28 px-6 bg-secondary">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-center">
         <div className="w-full md:w-1/2 mb-10 md:mb-0">
-          <h2 className="font-h2 text-h2 text-primary mb-4">Mulai Proyek Anda</h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant mb-8">Diskusikan ide Anda dan mari ciptakan solusi digital yang berdampak nyata bagi bisnis Anda.</p>
+          <h2 className="font-heading text-4xl text-secondary-foreground mb-4">Mulai Proyek Anda</h2>
+          <p className="font-body text-lg text-secondary-foreground/80 mb-8 max-w-xl">Diskusikan ide Anda dan mari ciptakan solusi digital yang berdampak nyata bagi bisnis Anda.</p>
           <div className="space-y-4">
-            <div className="flex items-center gap-4 text-on-surface-variant">
+            <div className="flex items-center gap-4 text-secondary-foreground/80">
               <Mail className="w-5 h-5" />
-              <span className="font-body-md text-body-md">hello@rakapratama.dev</span>
+              <span className="font-body">hello@rakapratama.dev</span>
             </div>
-            <div className="flex items-center gap-4 text-on-surface-variant">
+            <div className="flex items-center gap-4 text-secondary-foreground/80">
               <MapPin className="w-5 h-5" />
-              <span className="font-body-md text-body-md">Jakarta, Indonesia</span>
+              <span className="font-body">Jakarta, Indonesia</span>
             </div>
           </div>
         </div>
         <div className="w-full md:w-1/2">
-          <form onSubmit={handleSubmit} className="bg-surface-container-lowest p-8 rounded border border-outline-variant/20 space-y-6">
+          <form onSubmit={handleSubmit} className="bg-secondary-foreground/10 p-8 rounded-lg border border-secondary-foreground/20 space-y-6">
               <div>
-                  <Label htmlFor="name" className="block font-label-sm text-label-sm text-primary mb-2">Nama Lengkap</Label>
+                  <Label htmlFor="name" className="block text-sm font-medium text-secondary-foreground mb-2">Nama Lengkap</Label>
                   <Input 
                     id="name" 
                     type="text" 
                     placeholder="Masukkan nama Anda" 
                     value={formData.name} 
                     onChange={handleChange} 
-                    className="w-full bg-surface border border-outline-variant/20 rounded px-4 py-3 text-primary focus:border-primary focus:ring-0 font-body-md transition-colors"
+                    className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
               <div>
-                  <Label htmlFor="email" className="block font-label-sm text-label-sm text-primary mb-2">Email</Label>
+                  <Label htmlFor="email" className="block text-sm font-medium text-secondary-foreground mb-2">Email</Label>
                   <Input 
                     id="email" 
                     type="email" 
                     placeholder="email@perusahaan.com" 
                     value={formData.email} 
                     onChange={handleChange} 
-                    className="w-full bg-surface border border-outline-variant/20 rounded px-4 py-3 text-primary focus:border-primary focus:ring-0 font-body-md transition-colors"
+                    className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
               <div>
-                  <Label htmlFor="message" className="block font-label-sm text-label-sm text-primary mb-2">Pesan</Label>
+                  <Label htmlFor="message" className="block text-sm font-medium text-secondary-foreground mb-2">Pesan</Label>
                   <Textarea 
                     id="message" 
                     placeholder="Ceritakan tentang proyek Anda..." 
                     rows={4} 
                     value={formData.message} 
                     onChange={handleChange} 
-                    className="w-full bg-surface border border-outline-variant/20 rounded px-4 py-3 text-primary focus:border-primary focus:ring-0 font-body-md transition-colors"
+                    className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
-              <Button type="submit" className="w-full bg-primary text-on-primary px-6 py-4 rounded hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-sm text-label-sm">Kirim Pesan</Button>
+              <Button type="submit" className="w-full bg-primary-foreground text-secondary hover:bg-primary-foreground/90">Kirim Pesan</Button>
           </form>
         </div>
       </div>
