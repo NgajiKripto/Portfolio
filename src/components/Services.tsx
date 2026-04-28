@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { services } from '@/data/services';
+import SplitText from '@/components/ui/SplitText';
 
 const Services = () => {
   const FADE_UP_ANIMATION_VARIANTS = {
@@ -13,16 +14,18 @@ const Services = () => {
   return (
     <section id="services" className="py-28 px-6 bg-secondary">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={FADE_UP_ANIMATION_VARIANTS}
+        <div
           className="mb-16 text-center md:text-left"
         >
-          <h2 className="font-heading text-4xl text-secondary-foreground mb-4">Layanan Digital</h2>
+          <SplitText
+            tag="h2"
+            text="Layanan Digital"
+            className="font-heading text-4xl text-secondary-foreground mb-4"
+            splitType="words"
+            textAlign="inherit"
+          />
           <p className="font-body text-lg text-secondary-foreground/80 max-w-2xl">Solusi komprehensif dari konsep hingga peluncuran untuk memastikan kesuksesan produk digital Anda.</p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (

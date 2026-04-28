@@ -6,6 +6,7 @@ import { testimonials } from '@/data/testimonials';
 import { Card, CardContent } from '@/components/ui/card';
 import { Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SplitText from '@/components/ui/SplitText';
 
 
 const Testimonials = () => {
@@ -16,16 +17,18 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-28 px-6 max-w-6xl mx-auto bg-white">
-        <motion.div 
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={FADE_UP_ANIMATION_VARIANTS}
+        <div 
             className="mb-16 text-center md:text-left"
         >
-            <h2 className="font-heading text-4xl text-foreground mb-4">Apa Kata Klien</h2>
+            <SplitText
+              tag="h2"
+              text="Apa Kata Klien"
+              className="font-heading text-4xl text-foreground mb-4"
+              splitType="words"
+              textAlign="inherit"
+            />
             <p className="font-body text-lg text-foreground max-w-2xl">Pengalaman mereka yang telah bekerja sama dalam mentransformasi bisnis digital.</p>
-        </motion.div>
+        </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {testimonials.map((testimonial, index) => (
