@@ -31,7 +31,7 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
         >
-          <div className="flex items-end gap-1 font-heading text-8xl font-bold text-foreground md:text-9xl">
+          <div className="flex items-end gap-1 font-heading text-8xl font-bold text-white md:text-9xl">
             <CountUp
               from={0}
               to={100}
