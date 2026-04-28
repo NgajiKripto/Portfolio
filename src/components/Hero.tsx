@@ -27,7 +27,7 @@ const Hero = () => {
         <div>
           <SplitText
             tag="h1"
-            text="Solusi Digital Inovatif untuk Bisnis Anda"
+            text="Bichar Digital Marketer"
             className="font-heading text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl"
             splitType="words"
             textAlign="inherit"
