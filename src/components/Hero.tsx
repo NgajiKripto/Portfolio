@@ -39,11 +39,6 @@ const Hero = () => {
               Konsultasi Gratis
             </Button>
           </a>
-          <a href="#services">
-            <Button size="lg" variant="outline" className="w-full sm:w-auto">
-              Lihat Layanan
-            </Button>
-          </a>
         </div>
       </div>
        <div className="relative flex h-auto w-full items-center justify-center py-12 md:h-screen md:w-1/2 md:py-0">
