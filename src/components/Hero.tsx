@@ -1,8 +1,8 @@
 'use client';
 
 import { Button } from './ui/button';
-import { BlurText } from './ui/blur-text';
 import ProfileCard from './ProfileCard';
+import SplitText from './ui/SplitText';
 
 const Hero = () => {
   const scrollToContact = (e?: React.MouseEvent<HTMLAnchorElement>) => {
@@ -17,14 +17,16 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center bg-white px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
+      className="relative flex min-h-screen flex-col items-center justify-center bg-background px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
     >
       <div className="relative z-10 flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
         <div>
-          <BlurText
+          <SplitText
+            tag="h1"
             text="Solusi Digital Inovatif untuk Bisnis Anda"
-            className="font-display text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl"
-            animateBy="words"
+            className="font-heading text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl"
+            splitType="words"
+            textAlign="inherit"
           />
         </div>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:mx-0">
