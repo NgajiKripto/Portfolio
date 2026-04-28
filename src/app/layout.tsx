@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Raka Pratama - Full-Stack Developer & Digital Consultant',
+  title: 'Bichar - Full-Stack Developer & Digital Consultant',
   description: 'Meningkatkan bisnis Anda dengan solusi digital terpadu. Dari pengembangan web kustom hingga optimasi SEO, saya memberikan hasil yang terukur.',
 };
 
