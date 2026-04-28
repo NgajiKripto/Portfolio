@@ -2,6 +2,7 @@
 
 import { Button } from './ui/button';
 import { BlurText } from './ui/blur-text';
+import Lanyard from './Lanyard';
 
 const Hero = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -12,9 +13,9 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 py-20 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center bg-white px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
     >
-      <div className="relative z-10">
+      <div className="relative z-10 flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
         <div>
           <BlurText
             text="Solusi Digital Inovatif untuk Bisnis Anda"
@@ -22,7 +23,7 @@ const Hero = () => {
             animateBy="words"
           />
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:mx-0">
           Saya Raka Pratama, seorang Full-Stack Developer & Digital
           Consultant. Saya merancang dan membangun aplikasi web modern yang
           cepat, fungsional, dan menawan untuk mendorong pertumbuhan bisnis
@@ -40,6 +41,9 @@ const Hero = () => {
             </Button>
           </a>
         </div>
+      </div>
+      <div className="relative h-96 w-full md:h-screen md:w-1/2">
+        <Lanyard />
       </div>
     </section>
   );
