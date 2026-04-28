@@ -105,14 +105,14 @@ const ShinyText = ({
   };
 
   return (
-    <motion.h2
+    <motion.span
       className={`shiny-text ${className}`}
       style={{ ...gradientStyle, backgroundPosition }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {text}
-    </motion.h2>
+    </motion.span>
   );
 };
 

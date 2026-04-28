@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import './ProfileCard.css';
+import ShinyText from '@/components/ui/ShinyText';
 
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
 
@@ -80,7 +81,7 @@ const ProfileCardComponent = ({
         '--pointer-from-center': `${clamp(Math.hypot(percentY - 50, percentX - 50) / 50, 0, 1)}`,
         '--pointer-from-top': `${percentY / 100}`,
         '--pointer-from-left': `${percentX / 100}`,
-        '--rotate-x': `${round(-(centerY / 5))}deg`,
+        '--rotate-x': `${round(-(centerX / 5))}deg`,
         '--rotate-y': `${round(centerX / 4)}deg`
       };
 
@@ -350,7 +351,7 @@ const ProfileCardComponent = ({
                     type="button"
                     aria-label={`Contact ${name || 'user'}`}
                   >
-                    {contactText}
+                    <ShinyText text={contactText} color="#333" shineColor="#aaa" className="font-semibold" />
                   </button>
                 </div>
               )}

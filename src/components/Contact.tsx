@@ -45,8 +45,8 @@ const Contact = () => {
           <ShinyText
             text="Mulai Proyek Anda"
             className="font-heading text-4xl mb-4"
-            color="hsl(var(--secondary-foreground))"
-            shineColor="hsl(var(--accent))"
+            color="#FFFFFF"
+            shineColor="#56B6C6"
             speed={5}
             yoyo={true}
           />
@@ -97,7 +97,9 @@ const Contact = () => {
                     className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
-              <Button type="submit" className="w-full bg-primary-foreground text-secondary hover:bg-primary-foreground/90">Kirim Pesan</Button>
+              <Button type="submit" className="w-full bg-primary-foreground text-secondary hover:bg-primary-foreground/90">
+                <ShinyText text="Kirim Pesan" color="#170C79" shineColor="#56B6C6" />
+              </Button>
           </form>
         </div>
       </div>
