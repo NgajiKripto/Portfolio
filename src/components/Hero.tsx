@@ -3,6 +3,7 @@
 import { Button } from './ui/button';
 import ProfileCard from './ProfileCard';
 import SplitText from './ui/SplitText';
+import TextType from '@/components/ui/TextType';
 
 const Hero = () => {
   const scrollToContact = (e?: React.MouseEvent<HTMLAnchorElement>) => {
@@ -13,11 +14,13 @@ const Hero = () => {
   const handleCardContactClick = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
   }
+  
+  const descriptionText = "Saya Raka Pratama, seorang Full-Stack Developer & Digital Consultant. Saya merancang dan membangun aplikasi web modern yang cepat, fungsional, dan menawan untuk mendorong pertumbuhan bisnis Anda.";
 
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center bg-background px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
+      className="relative flex min-h-screen flex-col items-center justify-center bg-white px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
     >
       <div className="relative z-10 flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
         <div>
@@ -29,12 +32,15 @@ const Hero = () => {
             textAlign="inherit"
           />
         </div>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:mx-0">
-          Saya Raka Pratama, seorang Full-Stack Developer & Digital
-          Consultant. Saya merancang dan membangun aplikasi web modern yang
-          cepat, fungsional, dan menawan untuk mendorong pertumbuhan bisnis
-          Anda.
-        </p>
+        <TextType
+            as="p"
+            text={descriptionText}
+            className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:mx-0"
+            typingSpeed={20}
+            initialDelay={1000}
+            loop={false}
+            showCursor={true}
+        />
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a href="#contact" onClick={scrollToContact}>
             <Button size="lg" className="w-full sm:w-auto">

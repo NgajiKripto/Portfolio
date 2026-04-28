@@ -1,0 +1,7 @@
+.text-type__cursor {
+    display: inline-block;
+    margin-left: 1px;
+}
+.text-type__cursor--hidden {
+    opacity: 0;
+}
