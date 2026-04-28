@@ -16,7 +16,7 @@ const Hero = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
   }
   
-  const descriptionText = "Saya Raka Pratama, seorang Full-Stack Developer & Digital Consultant. Saya merancang dan membangun aplikasi web modern yang cepat, fungsional, dan menawan untuk mendorong pertumbuhan bisnis Anda.";
+  const descriptionText = "Saya Bichar, seorang Full-Stack Developer & Digital Consultant. Saya merancang dan membangun aplikasi web modern yang cepat, fungsional, dan menawan untuk mendorong pertumbuhan bisnis Anda.";
 
   return (
     <section
@@ -52,7 +52,7 @@ const Hero = () => {
       </div>
        <div className="relative flex h-auto w-full items-center justify-center py-12 md:h-screen md:w-1/2 md:py-0">
         <ProfileCard 
-          name="Raka Pratama"
+          name="Bichar"
           title="Full-Stack Developer"
           handle="rakapratama"
           avatarUrl="https://picsum.photos/seed/raka1/400/400"
