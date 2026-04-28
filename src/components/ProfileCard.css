@@ -1,0 +1,253 @@
+
+.pc-card-wrapper {
+  --radius: 24px;
+  --w: 320px;
+  --h: 440px;
+  --icon-size: 24px;
+  --transition-setting: 180ms;
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  perspective: 1000px;
+  z-index: 1;
+}
+
+.pc-card-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  transition: transform var(--transition-setting) ease-out,
+              box-shadow var(--transition-setting) ease-out;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--rotate-y, 0deg)) rotateX(var(--rotate-x, 0deg));
+  will-change: transform, box-shadow;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.2);
+}
+
+.pc-card-shell.active {
+  transition-duration: 40ms;
+}
+
+.pc-card-shell.entering {
+  transition-duration: 180ms;
+}
+
+.pc-card-shell.active {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+.pc-card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #2a2633;
+  transform-style: preserve-3d;
+  transform: translateZ(0.1px); /* For stacking context */
+  backface-visibility: hidden;
+}
+
+.pc-inside {
+  position: absolute;
+  inset: 0;
+  background-image: var(--inner-gradient);
+  background-size: 100% 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Background pattern */
+.pc-inside::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background-image: var(--icon, none);
+  background-repeat: repeat;
+  background-size: var(--icon-size) var(--icon-size);
+  opacity: 0.1;
+  pointer-events: none;
+  transform: translateZ(-1px);
+  will-change: background-position;
+  background-position: var(--background-x) var(--background-y);
+  transition: background-position 0.2s linear;
+}
+
+/* Grain effect */
+.pc-inside::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain, none);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.pc-shine {
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  opacity: var(--pointer-from-center, 0);
+  transition: opacity 0.2s ease-out;
+  z-index: 2;
+  will-change: background, opacity;
+  pointer-events: none;
+}
+
+.pc-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, transparent 40%);
+    opacity: calc(var(--pointer-from-center) * 0.5 + 0.1);
+    transform: translateZ(1px);
+    pointer-events: none;
+    z-index: 3;
+}
+
+
+.pc-content {
+  position: relative;
+  z-index: 4;
+  padding: 24px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pc-avatar-content {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  margin: 20px auto 0;
+  object-fit: cover;
+}
+
+.pc-user-info {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 12px;
+  width: 100%;
+  margin-top: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pc-user-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pc-mini-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pc-handle {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.pc-status {
+  font-size: 12px;
+  color: #c4c3d0;
+  position: relative;
+  padding-left: 12px;
+}
+.pc-status::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #34c759;
+  border-radius: 50%;
+}
+
+.pc-contact-btn {
+  background: #fff;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pc-contact-btn:hover {
+  background-color: #eee;
+}
+
+.pc-details {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  text-align: center;
+}
+
+.pc-details h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.pc-details p {
+  font-size: 14px;
+  color: #ddd;
+  margin: 4px 0 0;
+}
+
+
+/* Behind Glow */
+.pc-behind {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--background-x) var(--background-y),
+    var(--behind-glow-color) 0%,
+    transparent var(--behind-glow-size)
+  );
+  filter: blur(80px);
+  transform: translateZ(-20px) translateY(5%);
+  opacity: var(--pointer-from-center, 0);
+  transition: opacity var(--transition-setting) ease-out,
+              background var(--transition-setting) ease-out;
+  will-change: opacity, background;
+}
+
+.pc-card-shell.active .pc-behind {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .pc-card-wrapper {
+    --w: 280px;
+    --h: 385px;
+  }
+}

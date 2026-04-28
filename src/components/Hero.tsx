@@ -2,13 +2,17 @@
 
 import { Button } from './ui/button';
 import { BlurText } from './ui/blur-text';
-import Lanyard from './Lanyard';
+import ProfileCard from './ProfileCard';
 
 const Hero = () => {
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  const scrollToContact = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    e?.preventDefault();
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
   };
+  
+  const handleCardContactClick = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   return (
     <section
@@ -42,8 +46,17 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="relative h-96 w-full md:h-screen md:w-1/2">
-        <Lanyard />
+       <div className="relative flex h-auto w-full items-center justify-center py-12 md:h-screen md:w-1/2 md:py-0">
+        <ProfileCard 
+          name="Raka Pratama"
+          title="Full-Stack Developer"
+          handle="rakapratama"
+          avatarUrl="https://picsum.photos/seed/raka1/400/400"
+          miniAvatarUrl="https://picsum.photos/seed/raka2/100/100"
+          status="Available for projects"
+          contactText="Hubungi Saya"
+          onContactClick={handleCardContactClick}
+        />
       </div>
     </section>
   );
