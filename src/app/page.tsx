@@ -7,6 +7,7 @@ import Services from '@/components/Services';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import Preloader from '@/components/Preloader';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -16,6 +17,7 @@ const navLinks = [
 ];
 
 export default function Home() {
+  const [loaded, setLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -40,21 +42,26 @@ export default function Home() {
 
   return (
     <>
-      <PillNav
-        items={navLinks}
-        activeHref={`#${activeSection}`}
-        baseColor="hsl(var(--primary))"
-        pillColor="hsl(var(--primary-foreground))"
-        hoveredPillTextColor="hsl(var(--primary-foreground))"
-        pillTextColor="hsl(var(--primary))"
-      />
-      <main>
-        <Hero />
-        <Services />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
+      <Preloader onComplete={() => setLoaded(true)} />
+      {loaded && (
+        <>
+          <PillNav
+            items={navLinks}
+            activeHref={`#${activeSection}`}
+            baseColor="hsl(var(--primary))"
+            pillColor="hsl(var(--primary-foreground))"
+            hoveredPillTextColor="hsl(var(--primary-foreground))"
+            pillTextColor="hsl(var(--primary))"
+          />
+          <main>
+            <Hero />
+            <Services />
+            <Testimonials />
+            <Contact />
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
