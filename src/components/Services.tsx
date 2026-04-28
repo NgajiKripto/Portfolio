@@ -41,8 +41,16 @@ const Services = () => {
               <div className="mb-6">
                 <service.icon className="w-10 h-10 text-secondary-foreground" />
               </div>
-              <h3 className="font-heading text-xl font-semibold text-secondary-foreground mb-3">{service.title}</h3>
-              <p className="font-body text-secondary-foreground/80">{service.description}</p>
+              <div className="h-[56px] flex items-center">
+                <SplitText
+                  tag="h3"
+                  text={service.title}
+                  className="font-heading text-xl font-semibold text-secondary-foreground"
+                  splitType="words"
+                  textAlign="left"
+                />
+              </div>
+              <p className="font-body text-secondary-foreground/80 mt-3">{service.description}</p>
             </motion.div>
           ))}
         </div>
