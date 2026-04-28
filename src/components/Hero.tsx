@@ -16,7 +16,7 @@ const Hero = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
   }
   
-  const descriptionText = "Saya Bichar, seorang Full-Stack Developer & Digital Consultant. Saya merancang dan membangun aplikasi web modern yang cepat, fungsional, dan menawan untuk mendorong pertumbuhan bisnis Anda.";
+  const descriptionText = "Tingkatkan omzet dengan solusi digital terintegrasi. Kami tangani pembuatan website, Local SEO, hingga manajemen marketplace dalam satu pintu.";
 
   return (
     <section
