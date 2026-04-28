@@ -2,7 +2,6 @@
 
 import { Button } from './ui/button';
 import { BlurText } from './ui/blur-text';
-import { GridScan } from './GridScan';
 
 const Hero = () => {
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -15,18 +14,6 @@ const Hero = () => {
       id="home"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 py-20 text-center"
     >
-      <GridScan
-        sensitivity={0.55}
-        lineThickness={1}
-        linesColor="#170C79"
-        gridScale={0.1}
-        scanColor="#8276ee"
-        scanOpacity={0.4}
-        enablePost
-        bloomIntensity={0.6}
-        chromaticAberration={0.002}
-        noiseIntensity={0.01}
-      />
       <div className="relative z-10">
         <div>
           <BlurText
