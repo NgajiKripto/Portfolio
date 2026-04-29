@@ -8,6 +8,7 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Preloader from '@/components/Preloader';
+import ScrollVelocity from '@/components/ui/ScrollVelocity';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -55,6 +56,10 @@ export default function Home() {
           />
           <main>
             <Hero />
+            <ScrollVelocity
+              texts={['Layanan Digital', 'Digital Services']}
+              velocity={80}
+            />
             <Services />
             <Testimonials />
             <Contact />
