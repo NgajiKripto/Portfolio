@@ -56,13 +56,6 @@ const Hero = () => {
             loop={false}
             showCursor={true}
         />
-        <div className="mt-8 hidden md:flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a href="#contact" onClick={scrollToContact}>
-            <Button size="lg" className="w-full sm:w-auto">
-              <ShinyText text="Konsultasi Gratis" color="hsl(var(--primary-foreground))" shineColor="hsl(var(--accent))" />
-            </Button>
-          </a>
-        </div>
       </div>
        <div className="relative flex h-auto w-full items-center justify-center py-12 md:h-screen md:w-1/2 md:py-0">
         <ProfileCard 

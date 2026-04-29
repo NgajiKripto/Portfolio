@@ -57,17 +57,9 @@ body::before {
 .pill-nav-container {
   position: absolute;
   top: 1em;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: 100%;
   z-index: 99;
-}
-
-@media (max-width: 768px) {
-  .pill-nav-container {
-    width: 100%;
-    left: 0;
-    transform: none;
-  }
 }
 
 .pill-nav {
@@ -75,15 +67,16 @@ body::before {
   --logo: 36px;
   --pill-pad-x: 18px;
   --pill-gap: 3px;
-  width: max-content;
+  width: 100%;
   display: flex;
   align-items: center;
   box-sizing: border-box;
+  padding: 0 2rem;
+  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
   .pill-nav {
-    width: 100%;
     justify-content: center;
     padding: 0 1rem;
     background: transparent;
@@ -206,7 +199,7 @@ body::before {
 }
 
 .desktop-only {
-  display: block;
+  display: none;
 }
 
 .mobile-only {
@@ -214,10 +207,6 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  .desktop-only {
-    display: none;
-  }
-
   .mobile-only {
     display: block;
   }
@@ -229,7 +218,7 @@ body::before {
   border-radius: 50%;
   background: var(--base, #000);
   border: none;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -237,12 +226,6 @@ body::before {
   cursor: pointer;
   padding: 0;
   position: relative;
-}
-
-@media (max-width: 768px) {
-  .mobile-menu-button {
-    display: flex;
-  }
 }
 
 .hamburger-line {
@@ -293,4 +276,37 @@ body::before {
   cursor: pointer;
   background-color: var(--base);
   color: var(--hover-text, #fff);
+}
+
+.nav-brand {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.nav-consult-button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 0 1.25rem;
+  height: var(--nav-h);
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.nav-consult-button:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .nav-brand,
+  .nav-consult-button {
+    display: none;
+  }
 }

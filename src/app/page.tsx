@@ -21,6 +21,10 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  const scrollToContact = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = navLinks.map(link => document.querySelector(link.href));
@@ -53,6 +57,9 @@ export default function Home() {
             pillColor="hsl(var(--primary-foreground))"
             hoveredPillTextColor="hsl(var(--primary-foreground))"
             pillTextColor="hsl(var(--primary))"
+            brandText="Bichar"
+            consultButtonText="Konsultasi Gratis"
+            onConsultClick={scrollToContact}
           />
           <main>
             <Hero />
