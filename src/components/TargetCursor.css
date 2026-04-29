@@ -15,23 +15,24 @@
 }
 
 .target-cursor-corner:nth-child(1) {
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
+  /* borderWidth (3px) matches the positioning offset constant in TargetCursor.tsx */
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
 }
 
 .target-cursor-corner:nth-child(2) {
-  border-top: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
 }
 
 .target-cursor-corner:nth-child(3) {
-  border-bottom: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
 }
 
 .target-cursor-corner:nth-child(4) {
-  border-bottom: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
 }
 
 .target-cursor-dot {

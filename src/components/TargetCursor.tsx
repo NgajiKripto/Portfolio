@@ -167,15 +167,16 @@ const TargetCursor = ({
 
     const enterHandler = (e: MouseEvent) => {
       const directTarget = e.target as Element;
-      const allTargets: Element[] = [];
+      // Collect matching ancestors; only the closest (index 0) is used as the target
+      const ancestorTargets: Element[] = [];
       let current: Element | null = directTarget;
       while (current && current !== document.body) {
         if (current.matches(targetSelector)) {
-          allTargets.push(current);
+          ancestorTargets.push(current);
         }
         current = current.parentElement;
       }
-      const target = allTargets[0] || null;
+      const target = ancestorTargets[0] || null;
       if (!target || !cursorRef.current || !cornersRef.current) return;
       if (activeTarget === target) return;
       if (activeTarget) {
