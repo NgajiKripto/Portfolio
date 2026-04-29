@@ -42,7 +42,7 @@ const Hero = () => {
             loop={false}
             showCursor={true}
         />
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-8 hidden md:flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a href="#contact" onClick={scrollToContact}>
             <Button size="lg" className="w-full sm:w-auto">
               <ShinyText text="Konsultasi Gratis" color="hsl(var(--primary-foreground))" shineColor="hsl(var(--accent))" />
@@ -54,13 +54,20 @@ const Hero = () => {
         <ProfileCard 
           name="Bichar"
           title="Full-Stack Developer"
-          handle="rakapratama"
+          handle="bichar"
           avatarUrl="https://picsum.photos/seed/raka1/400/400"
           miniAvatarUrl="https://picsum.photos/seed/raka2/100/100"
           status="Available for projects"
           contactText="Hubungi Saya"
           onContactClick={handleCardContactClick}
         />
+      </div>
+      <div className="mt-4 flex w-full flex-col items-center justify-center gap-4 md:hidden">
+        <a href="#contact" onClick={scrollToContact}>
+          <Button size="lg" className="w-full sm:w-auto">
+            <ShinyText text="Konsultasi Gratis" color="hsl(var(--primary-foreground))" shineColor="hsl(var(--accent))" />
+          </Button>
+        </a>
       </div>
     </section>
   );
