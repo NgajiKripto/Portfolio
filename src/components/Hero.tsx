@@ -29,6 +29,7 @@ const Hero = () => {
           particleCount={600}
           particleSpread={10}
           speed={0.1}
+          particleColors={['#170C79']}
           alphaParticles={true}
           particleBaseSize={200}
           sizeRandomness={1}
