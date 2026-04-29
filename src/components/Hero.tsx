@@ -5,6 +5,7 @@ import ProfileCard from './ProfileCard';
 import SplitText from './ui/SplitText';
 import TextType from '@/components/ui/TextType';
 import ShinyText from '@/components/ui/ShinyText';
+import ColorBends from './ColorBends';
 
 const Hero = () => {
   const scrollToContact = (e?: React.MouseEvent<HTMLAnchorElement>) => {
@@ -21,14 +22,15 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col items-center justify-center bg-white px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
+      className="relative flex min-h-screen flex-col items-center justify-center bg-black px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
     >
+      <ColorBends />
       <div className="relative z-10 flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
         <div>
           <SplitText
             tag="h1"
             text="Bichar Digital Marketer"
-            className="font-heading text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl"
+            className="font-heading text-4xl font-bold tracking-tighter text-white sm:text-5xl md:text-6xl"
             splitType="words"
             textAlign="inherit"
           />
@@ -36,7 +38,7 @@ const Hero = () => {
         <TextType
             as="p"
             text={descriptionText}
-            className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:mx-0"
+            className="mx-auto mt-6 max-w-2xl text-lg text-gray-300 md:mx-0"
             typingSpeed={20}
             initialDelay={1000}
             loop={false}
