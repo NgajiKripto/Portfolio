@@ -1,0 +1,3 @@
+## 2024-05-24 - Async Loading States for Form Actions
+**Learning:** Adding immediate visual feedback (loading spinner, disabled button state, "Mengirim..." text) during async form submissions prevents users from clicking multiple times and makes the UI feel significantly more responsive and clear. Using native HTML validation with a screen-reader friendly required indicator enhances both visual and non-visual accessibility.
+**Action:** When creating forms that trigger network requests, ensure the submit button handles the loading state (e.g. using `lucide-react`'s `Loader2` or a custom spinner), disables to prevent duplicate submissions, and clearly uses `aria-required="true"` and a visual red asterisk `*` for mandatory fields.
