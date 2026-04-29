@@ -164,11 +164,13 @@ const PillNav = ({
     if (hamburger) {
       const lines = hamburger.querySelectorAll('.hamburger-line');
       if (newState) {
-        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+        gsap.to(lines[0], { rotation: 45, y: 6, duration: 0.3, ease });
+        gsap.to(lines[1], { opacity: 0, duration: 0.2, ease });
+        gsap.to(lines[2], { rotation: -45, y: -6, duration: 0.3, ease });
       } else {
         gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+        gsap.to(lines[1], { opacity: 1, duration: 0.2, ease });
+        gsap.to(lines[2], { rotation: 0, y: 0, duration: 0.3, ease });
       }
     }
 
@@ -232,90 +234,38 @@ const PillNav = ({
   } as React.CSSProperties;
 
   return (
-    <div className="pill-nav-container">
-      <nav className={cn('pill-nav', className)} aria-label="Primary" style={cssVars}>
-        <div className="pill-nav-items desktop-only" ref={navItemsRef}>
-          <ul className="pill-list" role="menubar">
-            {items.map((item, i) => (
-              <li key={item.href || `item-${i}`} role="none">
-                {isRouterLink(item.href) ? (
-                  <Link
-                    role="menuitem"
-                    href={item.href}
-                    className={cn('pill', { 'is-active': activeHref === item.href })}
-                    aria-label={item.ariaLabel || item.label}
-                    onMouseEnter={() => handleEnter(i)}
-                    onMouseLeave={() => handleLeave(i)}
-                  >
-                    <span
-                      className="hover-circle"
-                      aria-hidden="true"
-                      ref={el => {
-                        circleRefs.current[i] = el;
-                      }}
-                    />
-                    <span className="label-stack">
-                      <span className="pill-label">{item.label}</span>
-                      <span className="pill-label-hover" aria-hidden="true">
-                        {item.label}
-                      </span>
-                    </span>
-                  </Link>
-                ) : (
-                  <a
-                    role="menuitem"
-                    href={item.href}
-                    className={cn('pill font-body', { 'is-active': activeHref === item.href })}
-                    aria-label={item.ariaLabel || item.label}
-                    onMouseEnter={() => handleEnter(i)}
-                    onMouseLeave={() => handleLeave(i)}
-                    onClick={(e) => scrollToSection(e, item.href)}
-                  >
-                    <span
-                      className="hover-circle"
-                      aria-hidden="true"
-                      ref={el => {
-                        circleRefs.current[i] = el;
-                      }}
-                    />
-                    <span className="label-stack">
-                      <span className="pill-label">{item.label}</span>
-                      <span className="pill-label-hover" aria-hidden="true">
-                        {item.label}
-                      </span>
-                    </span>
-                  </a>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="pill-nav-container" style={cssVars}>
+      <span className="pill-nav-brand">Bichar</span>
 
+      <nav className={cn('pill-nav', className)} aria-label="Primary">
         <button
-          className="mobile-menu-button mobile-only"
+          className="mobile-menu-button"
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           ref={hamburgerRef}
         >
           <span className="hamburger-line" />
           <span className="hamburger-line" />
+          <span className="hamburger-line" />
         </button>
       </nav>
 
-      <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
+      <span className="pill-nav-status">Open For Work</span>
+
+      <div className="mobile-menu-popover" ref={mobileMenuRef}>
         <ul className="mobile-menu-list">
-          {items.map((item, i) => (
-            <li key={item.href || `mobile-item-${i}`}>
+          {items.map((item) => (
+            <li key={item.href || `mobile-item-${item.label}`}>
               <a
-                  href={item.href}
-                  className={cn('mobile-menu-link', { 'is-active': activeHref === item.href })}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
-                    toggleMobileMenu();
-                  }}
+                href={item.href}
+                className={cn('mobile-menu-link', { 'is-active': activeHref === item.href })}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                  toggleMobileMenu();
+                }}
               >
-                  {item.label}
+                {item.label}
               </a>
             </li>
           ))}
