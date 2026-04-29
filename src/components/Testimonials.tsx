@@ -21,13 +21,15 @@ const Testimonials = () => {
         <div 
             className="mb-16 text-center md:text-left"
         >
-            <SplitText
-              tag="h2"
-              text="Apa Kata Klien"
-              className="font-heading text-4xl text-foreground mb-4"
-              splitType="words"
-              textAlign="inherit"
-            />
+            <div>
+              <SplitText
+                tag="h2"
+                text="Apa Kata Klien"
+                className="font-heading text-4xl text-foreground mb-4"
+                splitType="words"
+                textAlign="inherit"
+              />
+            </div>
             <DecryptedText
                 text="Pengalaman mereka yang telah bekerja sama dalam mentransformasi bisnis digital."
                 parentClassName="font-body text-lg text-foreground max-w-2xl"
