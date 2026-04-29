@@ -1,0 +1,3 @@
+## 2024-04-29 - Native HTML Validation and ARIA Required
+**Learning:** While JavaScript-based toasts provide good feedback for incomplete forms, they do not inherently inform screen readers that fields are required before submission. Combining native HTML `required` and `aria-required="true"` attributes with visual indicators (like asterisks) provides a more accessible and intuitive form completion experience.
+**Action:** Always include native HTML validation constraints (`required`) along with `aria-required="true"` and a clear visual indicator for all required form fields, rather than relying solely on custom JS validation logic.

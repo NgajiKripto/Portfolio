@@ -65,35 +65,47 @@ const Contact = () => {
         <div className="w-full md:w-1/2">
           <form onSubmit={handleSubmit} className="bg-secondary-foreground/10 p-8 rounded-lg border border-secondary-foreground/20 space-y-6">
               <div>
-                  <Label htmlFor="name" className="block text-sm font-medium text-secondary-foreground mb-2">Nama Lengkap</Label>
+                  <Label htmlFor="name" className="block text-sm font-medium text-secondary-foreground mb-2">
+                    Nama Lengkap <span className="text-destructive">*</span>
+                  </Label>
                   <Input 
                     id="name" 
                     type="text" 
                     placeholder="Masukkan nama Anda" 
                     value={formData.name} 
                     onChange={handleChange} 
+                    required
+                    aria-required="true"
                     className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
               <div>
-                  <Label htmlFor="email" className="block text-sm font-medium text-secondary-foreground mb-2">Email</Label>
+                  <Label htmlFor="email" className="block text-sm font-medium text-secondary-foreground mb-2">
+                    Email <span className="text-destructive">*</span>
+                  </Label>
                   <Input 
                     id="email" 
                     type="email" 
                     placeholder="email@perusahaan.com" 
                     value={formData.email} 
                     onChange={handleChange} 
+                    required
+                    aria-required="true"
                     className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
               <div>
-                  <Label htmlFor="message" className="block text-sm font-medium text-secondary-foreground mb-2">Pesan</Label>
+                  <Label htmlFor="message" className="block text-sm font-medium text-secondary-foreground mb-2">
+                    Pesan <span className="text-destructive">*</span>
+                  </Label>
                   <Textarea 
                     id="message" 
                     placeholder="Ceritakan tentang proyek Anda..." 
                     rows={4} 
                     value={formData.message} 
                     onChange={handleChange} 
+                    required
+                    aria-required="true"
                     className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
