@@ -26,11 +26,11 @@ const Hero = () => {
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <Particles
-          particleCount={200}
+          particleCount={600}
           particleSpread={10}
           speed={0.1}
           alphaParticles={true}
-          particleBaseSize={80}
+          particleBaseSize={200}
           sizeRandomness={1}
           moveParticlesOnHover={false}
           disableRotation={false}
