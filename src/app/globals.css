@@ -57,20 +57,16 @@ body::before {
 .pill-nav-container {
   position: absolute;
   top: 1em;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  box-sizing: border-box;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 99;
 }
 
 @media (max-width: 768px) {
   .pill-nav-container {
-    padding: 0 1rem;
+    width: 100%;
+    left: 0;
+    transform: none;
   }
 }
 
@@ -79,44 +75,19 @@ body::before {
   --logo: 36px;
   --pill-pad-x: 18px;
   --pill-gap: 3px;
+  width: max-content;
   display: flex;
   align-items: center;
   box-sizing: border-box;
 }
 
-.nav-center {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-brand-text {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  color: hsl(var(--foreground));
-  letter-spacing: 0.03em;
-}
-
-.nav-status-text {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  color: hsl(var(--primary));
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-}
-
-.nav-status-text::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #22c55e;
-  flex-shrink: 0;
+@media (max-width: 768px) {
+  .pill-nav {
+    width: 100%;
+    justify-content: center;
+    padding: 0 1rem;
+    background: transparent;
+  }
 }
 
 .pill-nav-items {
