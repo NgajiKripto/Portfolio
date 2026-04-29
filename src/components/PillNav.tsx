@@ -22,6 +22,9 @@ interface PillNavProps {
   pillTextColor?: string;
   onMobileMenuClick?: () => void;
   initialLoadAnimation?: boolean;
+  brandText?: string;
+  consultButtonText?: string;
+  onConsultClick?: () => void;
 }
 
 const PillNav = ({
@@ -34,7 +37,10 @@ const PillNav = ({
   hoveredPillTextColor = '#1b1b1d', // foreground
   pillTextColor,
   onMobileMenuClick,
-  initialLoadAnimation = true
+  initialLoadAnimation = true,
+  brandText,
+  consultButtonText,
+  onConsultClick
 }: PillNavProps) => {
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -164,11 +170,13 @@ const PillNav = ({
     if (hamburger) {
       const lines = hamburger.querySelectorAll('.hamburger-line');
       if (newState) {
-        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+        gsap.to(lines[0], { rotation: 45, y: 6, duration: 0.3, ease });
+        gsap.to(lines[1], { opacity: 0, duration: 0.2, ease });
+        gsap.to(lines[2], { rotation: -45, y: -6, duration: 0.3, ease });
       } else {
         gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
+        gsap.to(lines[1], { opacity: 1, duration: 0.2, ease });
+        gsap.to(lines[2], { rotation: 0, y: 0, duration: 0.3, ease });
       }
     }
 
@@ -234,6 +242,10 @@ const PillNav = ({
   return (
     <div className="pill-nav-container">
       <nav className={cn('pill-nav', className)} aria-label="Primary" style={cssVars}>
+        {brandText && (
+          <span className="nav-brand">{brandText}</span>
+        )}
+
         <div className="pill-nav-items desktop-only" ref={navItemsRef}>
           <ul className="pill-list" role="menubar">
             {items.map((item, i) => (
@@ -292,17 +304,27 @@ const PillNav = ({
         </div>
 
         <button
-          className="mobile-menu-button mobile-only"
+          className="mobile-menu-button"
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           ref={hamburgerRef}
         >
           <span className="hamburger-line" />
           <span className="hamburger-line" />
+          <span className="hamburger-line" />
         </button>
+
+        {consultButtonText && (
+          <button
+            className="nav-consult-button"
+            onClick={onConsultClick}
+          >
+            {consultButtonText}
+          </button>
+        )}
       </nav>
 
-      <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
+      <div className="mobile-menu-popover" ref={mobileMenuRef} style={cssVars}>
         <ul className="mobile-menu-list">
           {items.map((item, i) => (
             <li key={item.href || `mobile-item-${i}`}>
