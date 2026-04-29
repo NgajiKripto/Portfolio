@@ -57,7 +57,7 @@ export default function Home() {
           <main>
             <Hero />
             <ScrollVelocity
-              texts={['Layanan Digital', 'Digital Services']}
+              texts={['Bichar Digital Marketer', 'Bichar Digital Marketer']}
               velocity={80}
             />
             <Services />
