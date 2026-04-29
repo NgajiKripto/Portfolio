@@ -5,7 +5,7 @@ import ProfileCard from './ProfileCard';
 import SplitText from './ui/SplitText';
 import TextType from '@/components/ui/TextType';
 import ShinyText from '@/components/ui/ShinyText';
-import ColorBends from './ColorBends';
+import Particles from './Particles';
 
 const Hero = () => {
   const scrollToContact = (e?: React.MouseEvent<HTMLAnchorElement>) => {
@@ -24,7 +24,18 @@ const Hero = () => {
       id="home"
       className="relative flex min-h-screen flex-col items-center justify-center bg-black px-6 py-20 md:flex-row md:justify-between md:px-12 md:py-0"
     >
-      <ColorBends />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <Particles
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          alphaParticles={true}
+          particleBaseSize={80}
+          sizeRandomness={1}
+          moveParticlesOnHover={false}
+          disableRotation={false}
+        />
+      </div>
       <div className="relative z-10 flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
         <div>
           <SplitText
