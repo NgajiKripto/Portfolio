@@ -6,14 +6,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, Loader2 } from 'lucide-react';
 import ShinyText from '@/components/ui/ShinyText';
 
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       toast({
@@ -24,6 +25,11 @@ const Contact = () => {
       return;
     }
     
+    setIsSubmitting(true);
+
+    // Simulate network delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     console.log('Form submitted:', formData);
     
     toast({
@@ -31,6 +37,7 @@ const Contact = () => {
       description: 'Terima kasih telah menghubungi. Saya akan segera merespons Anda.',
     });
     setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(false);
   };
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,10 +72,14 @@ const Contact = () => {
         <div className="w-full md:w-1/2">
           <form onSubmit={handleSubmit} className="bg-secondary-foreground/10 p-8 rounded-lg border border-secondary-foreground/20 space-y-6">
               <div>
-                  <Label htmlFor="name" className="block text-sm font-medium text-secondary-foreground mb-2">Nama Lengkap</Label>
+                  <Label htmlFor="name" className="block text-sm font-medium text-secondary-foreground mb-2">
+                    Nama Lengkap <span className="text-red-500" aria-hidden="true">*</span>
+                  </Label>
                   <Input 
                     id="name" 
                     type="text" 
+                    required
+                    aria-required="true"
                     placeholder="Masukkan nama Anda" 
                     value={formData.name} 
                     onChange={handleChange} 
@@ -76,10 +87,14 @@ const Contact = () => {
                   />
               </div>
               <div>
-                  <Label htmlFor="email" className="block text-sm font-medium text-secondary-foreground mb-2">Email</Label>
+                  <Label htmlFor="email" className="block text-sm font-medium text-secondary-foreground mb-2">
+                    Email <span className="text-red-500" aria-hidden="true">*</span>
+                  </Label>
                   <Input 
                     id="email" 
                     type="email" 
+                    required
+                    aria-required="true"
                     placeholder="email@perusahaan.com" 
                     value={formData.email} 
                     onChange={handleChange} 
@@ -87,9 +102,13 @@ const Contact = () => {
                   />
               </div>
               <div>
-                  <Label htmlFor="message" className="block text-sm font-medium text-secondary-foreground mb-2">Pesan</Label>
+                  <Label htmlFor="message" className="block text-sm font-medium text-secondary-foreground mb-2">
+                    Pesan <span className="text-red-500" aria-hidden="true">*</span>
+                  </Label>
                   <Textarea 
                     id="message" 
+                    required
+                    aria-required="true"
                     placeholder="Ceritakan tentang proyek Anda..." 
                     rows={4} 
                     value={formData.message} 
@@ -97,8 +116,15 @@ const Contact = () => {
                     className="w-full bg-transparent border-secondary-foreground/30 text-secondary-foreground placeholder:text-secondary-foreground/60 focus-visible:ring-ring"
                   />
               </div>
-              <Button type="submit" className="w-full bg-primary-foreground text-secondary hover:bg-primary-foreground/90">
-                <ShinyText text="Kirim Pesan" color="#170C79" shineColor="#56B6C6" />
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary-foreground text-secondary hover:bg-primary-foreground/90">
+                {isSubmitting ? (
+                  <div className="flex items-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                    <span>Mengirim...</span>
+                  </div>
+                ) : (
+                  <ShinyText text="Kirim Pesan" color="#170C79" shineColor="#56B6C6" />
+                )}
               </Button>
           </form>
         </div>
