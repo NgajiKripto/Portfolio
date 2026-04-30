@@ -16,30 +16,30 @@
 
 .target-cursor-corner:nth-child(1) {
   /* borderWidth (3px) matches the positioning offset constant in TargetCursor.tsx */
-  border-top: 3px solid #ffffff;
-  border-left: 3px solid #ffffff;
+  border-top: 3px solid #170C79;
+  border-left: 3px solid #170C79;
 }
 
 .target-cursor-corner:nth-child(2) {
-  border-top: 3px solid #ffffff;
-  border-right: 3px solid #ffffff;
+  border-top: 3px solid #170C79;
+  border-right: 3px solid #170C79;
 }
 
 .target-cursor-corner:nth-child(3) {
-  border-bottom: 3px solid #ffffff;
-  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #170C79;
+  border-right: 3px solid #170C79;
 }
 
 .target-cursor-corner:nth-child(4) {
-  border-bottom: 3px solid #ffffff;
-  border-left: 3px solid #ffffff;
+  border-bottom: 3px solid #170C79;
+  border-left: 3px solid #170C79;
 }
 
 .target-cursor-dot {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #ffffff;
+  background: #170C79;
   border-radius: 50%;
   top: 0;
   left: 0;
