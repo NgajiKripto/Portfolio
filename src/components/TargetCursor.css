@@ -39,7 +39,8 @@
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #170C79;
+  background: white;
+  border: 2px solid #170C79;
   border-radius: 50%;
   top: 0;
   left: 0;
