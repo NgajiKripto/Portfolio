@@ -1,0 +1,48 @@
+.target-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.target-cursor-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  will-change: transform;
+}
+
+.target-cursor-corner:nth-child(1) {
+  /* borderWidth (3px) matches the positioning offset constant in TargetCursor.tsx */
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+}
+
+.target-cursor-corner:nth-child(2) {
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+}
+
+.target-cursor-corner:nth-child(3) {
+  border-bottom: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+}
+
+.target-cursor-corner:nth-child(4) {
+  border-bottom: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+}
+
+.target-cursor-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}

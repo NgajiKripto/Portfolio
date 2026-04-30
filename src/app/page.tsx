@@ -9,6 +9,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Preloader from '@/components/Preloader';
 import ScrollVelocity from '@/components/ui/ScrollVelocity';
+import TargetCursor from '@/components/TargetCursor';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -47,6 +48,7 @@ export default function Home() {
 
   return (
     <>
+      <TargetCursor targetSelector="a, button" />
       <Preloader onComplete={() => setLoaded(true)} />
       {loaded && (
         <>
