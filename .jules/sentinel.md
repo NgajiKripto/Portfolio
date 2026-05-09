@@ -7,3 +7,8 @@
 **Vulnerability:** `next` was pinned at `14.2.4`, which carried multiple known advisories including a critical authorization bypass.
 **Learning:** Strict version pinning without routine security upgrades can keep production locked on known-vulnerable framework releases.
 **Prevention:** Run dependency audit checks regularly and prioritize non-breaking security patch upgrades for core framework packages.
+
+## 2026-05-09 - No Safe Patch Track Left in Next.js 14
+**Vulnerability:** `next@14.2.35` still remained vulnerable to DoS advisories, with fixes only available in newer major lines.
+**Learning:** For framework-level vulnerabilities, some release lines may stop receiving complete security remediations, forcing a major upgrade.
+**Prevention:** Track security support windows for framework majors and plan proactive major-version upgrades before advisories accumulate.
